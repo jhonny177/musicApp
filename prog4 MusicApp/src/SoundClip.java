@@ -4,7 +4,7 @@ import java.io.File;
  * SoundClip is a class representing a digital
  * sound clip file on disk.
  */
-public class SoundClip extends Album{
+public class SoundClip {
 
 	private final File file;
 	
