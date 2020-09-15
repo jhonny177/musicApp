@@ -53,7 +53,7 @@ public class Album {
 	}
 	public void deleteSubAlbums(String name) {
 		for(Album a:containsSubAlbum) {
-			if(a.getName()==name) {
+			if(a.equals(name)) {
 				containsSubAlbum.remove(a);
 			}
 		}
