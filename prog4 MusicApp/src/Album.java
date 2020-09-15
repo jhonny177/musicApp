@@ -8,7 +8,8 @@ public class Album {
 	
 	private String albumName;
 	private LinkedList<SoundClip> listOfFiles;
-	private Set<Album> containsSubAlbum;
+	private Set<Album> containsSubAlbum = new HashSet<Album>();
+	
 	
 	//söker och ser vilka sub album som hör till objektet
 	public Set<Album> subAlbum(){
@@ -39,5 +40,12 @@ public class Album {
 	// initizialiserar containsSubAlbum set
 	public void initilizeContainsSubAlbum() {
 		containsSubAlbum = new HashSet<Album>();
+	}
+	public void deleteSubAlbums(String name) {
+		for(Album a:containsSubAlbum) {
+			if(a.getName()==name) {
+				containsSubAlbum.remove(a);
+			}
+		}
 	}
 }

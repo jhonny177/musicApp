@@ -26,7 +26,6 @@ public class ManageAlbum{
 		albums.add(a);
 		for(Album al: albums) {
 			if(al.getName()==parentName) {
-				al.setContainsSubAlbum(al.subAlbum());
 				al.getContainsSubAlbum().add(a);
 			}
 		}
@@ -35,18 +34,12 @@ public class ManageAlbum{
 	public void deleteAlbum(String name) {
 		int counter = -1;
 		for(Album a:albums) {
-			counter++;
 			if(a.getName()==name) {			
-				Set<Album> temp = a.getContainsSubAlbum();
-				albums.remove(counter);
-				counter=-1;
-				for(Album i:albums) {
-					counter++;
-					for(Album j:temp) {
-						if(i.getName()==j.getName()) {
-							albums.remove(counter);
-						}
-					}
+				Set<Album> temp = albums.get(0).getContainsSubAlbum();
+				albums.remove(a);
+				for(Album b:temp) {
+					albums.remove(b);
+					
 				}
 			}
 		}
