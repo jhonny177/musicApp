@@ -25,7 +25,7 @@ public class ManageAlbum{
 		albums.add(a);
 		for(Album al: albums) {
 			if(al.getName()==parentName) {
-				al.getContainsSubAlbum().add(a);
+				al.addSubAlbum(a);
 			}
 		}
 	}

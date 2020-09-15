@@ -24,6 +24,14 @@ public class Album {
 		return album;
 	}
 	
+	public void addSubAlbum(Album a) {
+		containsSubAlbum.add(a);
+	}
+	
+	@Override
+	public String toString() {
+		return albumName;
+	}
 	
 	public void setName(String albumName) {
 		this.albumName = albumName;
