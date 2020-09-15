@@ -10,6 +10,7 @@ public class ManageAlbum{
 	//skapar ett root album
 	public void createRootAlbum(String name) {;
 		Album a = new Album();
+		albums = new LinkedList<Album>();
 		a.setName(name);
 		albums.add(a);
 	}
@@ -49,6 +50,9 @@ public class ManageAlbum{
 				}
 			}
 		}
+	}
+	public LinkedList<Album> getLinkedAlbumList() {
+		return albums;
 	}
 	
 }

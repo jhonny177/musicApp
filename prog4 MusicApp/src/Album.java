@@ -36,4 +36,8 @@ public class Album {
 	public void setContainsSubAlbum(Set<Album> containsSubAlbum){
 		this.containsSubAlbum = containsSubAlbum;
 	}
+	// initizialiserar containsSubAlbum set
+	public void initilizeContainsSubAlbum() {
+		containsSubAlbum = new HashSet<Album>();
+	}
 }
