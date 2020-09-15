@@ -19,16 +19,13 @@ class subAlbumTest {
 		test.setName("god");
 		sub.setName("morgon");
 		subSub.setName("igen");
-		test.initilizeContainsSubAlbum();
-		sub.initilizeContainsSubAlbum();
-		subSub.initilizeContainsSubAlbum();
-		sub.getContainsSubAlbum().add(subSub);
-		test.getContainsSubAlbum().add(sub);
-		//testar outoutten av subAlbum()
-		Set<Album> output = test.subAlbum();
+		sub.addSubAlbum(subSub);
+		test.addSubAlbum(sub);
+		//testar outputten av subAlbum()
+		Set<Album> output = test.listSubAlbums();
 		String outStr = "";
 		for(Album a: output) {
-			outStr += a.getName();
+			outStr += a;
 		}
 		//gör settet som det skall se ut
 		Set<Album> isNow = new HashSet<Album>();
@@ -36,7 +33,7 @@ class subAlbumTest {
 		isNow.add(subSub);
 		String now = "";
 		for(Album b:isNow) {
-			now += b.getName();
+			now += b;
 		}
 		assertEquals(now,outStr);
 	}

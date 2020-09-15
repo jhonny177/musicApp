@@ -10,29 +10,39 @@ public class Album {
 	private LinkedList<SoundClip> listOfFiles;
 	private Set<Album> containsSubAlbum = new HashSet<Album>();
 	
+	private Set<Album> subAlbums;
+	
+	public Album() {
+		subAlbums = new HashSet<Album>();
+	}
 	
 	//söker och ser vilka sub album som hör till objektet
-	public Set<Album> subAlbum(){
+	public Set<Album> listSubAlbums(){
 		Set<Album> album = new HashSet<Album>();
-		for(Album a:containsSubAlbum) {
+		for(Album a:subAlbums) {
 			album.add(a);
-			album.addAll(a.subAlbum());
+			album.addAll(a.listSubAlbums());
 			}
 		return album;
 	}
 	
+	public void addSubAlbum(Album a) {
+		subAlbums.add(a);
+	}
+	
+	@Override
+	public String toString() {
+		return albumName;
+	}
 	
 	public void setName(String albumName) {
 		this.albumName = albumName;
-	}
-	public String getName() {
-		return albumName;
 	}
 	public LinkedList<SoundClip> getListOfFiles(){
 		return listOfFiles;
 	}
 	public Set<Album> getContainsSubAlbum(){
-		return containsSubAlbum;
+		return subAlbums;
 	}
 	public void setContainsSubAlbum(Set<Album> containsSubAlbum){
 		this.containsSubAlbum = containsSubAlbum;
