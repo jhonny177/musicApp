@@ -10,7 +10,7 @@ class MangaeAlbumTests {
 	void testCreateRootAlbum() {
 		test = new ManageAlbum();
 		test.createRootAlbum("Ölsånger");
-		String output = test.getLinkedAlbumList().get(0).toString();
+		String output = test.getAlbumList().get(0).toString();
 		assertEquals("Ölsånger",output);
 	}
 	@Test

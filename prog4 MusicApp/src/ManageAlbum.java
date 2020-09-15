@@ -49,7 +49,7 @@ public class ManageAlbum{
 			}
 		}
 	}
-	public LinkedList<Album> getLinkedAlbumList() {
+	public LinkedList<Album> getAlbumList() {
 		return albums;
 	}
 	

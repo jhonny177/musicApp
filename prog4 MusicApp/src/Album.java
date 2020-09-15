@@ -8,16 +8,16 @@ public class Album {
 	
 	private String albumName;
 	private LinkedList<SoundClip> listOfFiles;
-	private Set<Album> containsSubAlbum;
+	private Set<Album> subAlbums;
 	
 	public Album() {
-		containsSubAlbum = new HashSet<Album>();
+		subAlbums = new HashSet<Album>();
 	}
 	
 	//söker och ser vilka sub album som hör till objektet
 	public Set<Album> listSubAlbums(){
 		Set<Album> album = new HashSet<Album>();
-		for(Album a:containsSubAlbum) {
+		for(Album a:subAlbums) {
 			album.add(a);
 			album.addAll(a.listSubAlbums());
 			}
@@ -25,7 +25,7 @@ public class Album {
 	}
 	
 	public void addSubAlbum(Album a) {
-		containsSubAlbum.add(a);
+		subAlbums.add(a);
 	}
 	
 	@Override
@@ -40,9 +40,9 @@ public class Album {
 		return listOfFiles;
 	}
 	public Set<Album> getContainsSubAlbum(){
-		return containsSubAlbum;
+		return subAlbums;
 	}
 	public void setContainsSubAlbum(Set<Album> containsSubAlbum){
-		this.containsSubAlbum = containsSubAlbum;
+		this.subAlbums = containsSubAlbum;
 	}
 }
