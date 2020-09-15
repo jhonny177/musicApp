@@ -11,11 +11,11 @@ public class Album {
 	private Set<Album> containsSubAlbum;
 	
 	//söker och ser vilka sub album som hör till objektet
-	public Set<Album> subAlbum(){
+	public Set<Album> listSubAlbums(){
 		Set<Album> album = new HashSet<Album>();
 		for(Album a:containsSubAlbum) {
 			album.add(a);
-			album.addAll(a.subAlbum());
+			album.addAll(a.listSubAlbums());
 			}
 		return album;
 	}
