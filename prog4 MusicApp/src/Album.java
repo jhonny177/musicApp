@@ -10,6 +10,10 @@ public class Album {
 	private LinkedList<SoundClip> listOfFiles;
 	private Set<Album> containsSubAlbum;
 	
+	public Album() {
+		containsSubAlbum = new HashSet<Album>();
+	}
+	
 	//söker och ser vilka sub album som hör till objektet
 	public Set<Album> listSubAlbums(){
 		Set<Album> album = new HashSet<Album>();
@@ -35,9 +39,5 @@ public class Album {
 	}
 	public void setContainsSubAlbum(Set<Album> containsSubAlbum){
 		this.containsSubAlbum = containsSubAlbum;
-	}
-	// initizialiserar containsSubAlbum set
-	public void initilizeContainsSubAlbum() {
-		containsSubAlbum = new HashSet<Album>();
 	}
 }

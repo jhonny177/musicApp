@@ -1,5 +1,4 @@
 import java.io.File;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Set;
 
@@ -26,7 +25,6 @@ public class ManageAlbum{
 		albums.add(a);
 		for(Album al: albums) {
 			if(al.getName()==parentName) {
-				al.setContainsSubAlbum(al.listSubAlbums());
 				al.getContainsSubAlbum().add(a);
 			}
 		}

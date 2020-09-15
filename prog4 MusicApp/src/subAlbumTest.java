@@ -19,13 +19,10 @@ class subAlbumTest {
 		test.setName("god");
 		sub.setName("morgon");
 		subSub.setName("igen");
-		test.initilizeContainsSubAlbum();
-		sub.initilizeContainsSubAlbum();
-		subSub.initilizeContainsSubAlbum();
 		sub.getContainsSubAlbum().add(subSub);
 		test.getContainsSubAlbum().add(sub);
 		//testar outoutten av subAlbum()
-		Set<Album> output = test.subAlbum();
+		Set<Album> output = test.listSubAlbums();
 		String outStr = "";
 		for(Album a: output) {
 			outStr += a.getName();
