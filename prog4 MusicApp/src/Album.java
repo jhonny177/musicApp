@@ -36,9 +36,6 @@ public class Album {
 	public void setName(String albumName) {
 		this.albumName = albumName;
 	}
-	public String getName() {
-		return albumName;
-	}
 	public LinkedList<SoundClip> getListOfFiles(){
 		return listOfFiles;
 	}

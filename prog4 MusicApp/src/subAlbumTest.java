@@ -25,7 +25,7 @@ class subAlbumTest {
 		Set<Album> output = test.listSubAlbums();
 		String outStr = "";
 		for(Album a: output) {
-			outStr += a.getName();
+			outStr += a;
 		}
 		//gör settet som det skall se ut
 		Set<Album> isNow = new HashSet<Album>();
@@ -33,7 +33,7 @@ class subAlbumTest {
 		isNow.add(subSub);
 		String now = "";
 		for(Album b:isNow) {
-			now += b.getName();
+			now += b;
 		}
 		assertEquals(now,outStr);
 	}
