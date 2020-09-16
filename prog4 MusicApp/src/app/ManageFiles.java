@@ -12,6 +12,11 @@ public class ManageFiles extends Album {
 	//tabort en fil i root albummet
 		public void deleteFile(SoundClip s) {
 			getListOfFiles().remove(s);
+			for(Album a:getSubAlbums()) {
+				if(fileExists(a,s)==true) {
+					a.getListOfFiles().remove(s);
+				}
+			}
 		}
 	//sätta till en fil i ett sub album
 		public void addFileToSub(Album a ,SoundClip s) {
