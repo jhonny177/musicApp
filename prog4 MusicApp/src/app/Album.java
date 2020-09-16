@@ -60,11 +60,31 @@ public class Album {
 		}
 	}
 	
+	//rekusivt går igenom alla subalbum och tar bort den som matchar input-parametern 
 	public void deleteSubAlbum(Album b) {
 		for (Album a:subAlbums) {
 			if(a.equals(b)) {
 				subAlbums.remove(a);
+				break;
+			} else {
+				a.deleteSubAlbum(b);
 			}
 		}
+	}
+
+	public Album getAlbumByName(String name) {
+		Album toReturn = null;
+		for (Album a:subAlbums) {
+			if (a.toString().equals(name)) {
+				toReturn = a;
+				break;
+			} else {
+				toReturn =  a.getAlbumByName(name);
+				if (toReturn != null) {
+					return toReturn;
+				}
+			}
+		}
+		return toReturn;
 	}
 }

@@ -7,52 +7,51 @@ import java.util.Set;
 
 public class ManageAlbum{
 	
-	private LinkedList<Album> albums;
+//	private LinkedList<Album> albums;
+	private Album root;
 	
 	//skapar ett root album
 	public void createRootAlbum(String name) {;
-		Album a = new Album();
-		albums = new LinkedList<Album>();
-		a.setName(name);
-		albums.add(a);
+	 	root = new Album(name);
+//		Album a = new Album();
+//		albums = new LinkedList<Album>();
+//		a.setName(name);
+//		albums.add(a);
 	}
 	//lägger till det nya sound clippet i root albumet
 	public void createFile(File f) {
 		SoundClip s = new SoundClip(f);
-		albums.get(0).getListOfFiles().add(s);
+		root.getListOfFiles().add(s);	//TODO ändra till addSong()
 	}
 	//lagar ett sub album åt ett redan existerande album
-	public void createSubAlbum(String parentName, String name) {
-		Album a = new Album();
-		a.setName(name);
-		albums.add(a);
-		for(Album al: albums) {
-			if(al.toString().equals(parentName)) {
-				al.addSubAlbum(a);
-				
-			}
-		}
+	public void createSubAlbum(Album parent, String name) {
+		parent.addSubAlbum(new Album(name));
 	}
 	//tar bort ett album och dess subalbum och ser till att albums listan uppdateras där efter
-	public void deleteAlbum(String name) {
-		albums.get(0).s
+	public void deleteAlbum(Album a) {
+		root.deleteSubAlbum(a);
 	}
 	//hittar förälder albummet till albummet
-	public Album findParentAlbum(Album findParent) {
-		for(Album a:albums) {
-			for (Album b:a.getContainsSubAlbum()){
-				if(b.toString().equals(findParent.toString())){
-					return a;
-				}
-			}
+//	public Album findParentAlbum(Album findParent) {
+//		for(Album a:albums) {
+//			for (Album b:a.getContainsSubAlbum()){
+//				if(b.toString().equals(findParent.toString())){
+//					return a;
+//				}
+//			}
+//		}
+//		return null;
+//	}
+	
+	public Album getAlbumByName(String name) {
+		if (name.equals("root")) {
+			return root;
 		}
-		return null;
+		return root.getAlbumByName(name);
 	}
 	
-	
-	
-	public LinkedList<Album> getAlbumList() {
-		return albums;
+	public Album getRootAlbum() {
+		return root;
 	}
 	
 	
