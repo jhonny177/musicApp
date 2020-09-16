@@ -37,6 +37,11 @@ public class Album {
 		subAlbums.add(a);
 	}
 	
+	public void addSong(SoundClip s) {
+		listOfFiles.add(s);
+	}
+	
+	
 	@Override
 	public String toString() {
 		return albumName;
