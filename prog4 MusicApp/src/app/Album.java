@@ -67,27 +67,10 @@ public class Album {
 		this.albumName = albumName;
 	}
 	
-//	Ska tas bort...
-//	public LinkedList<SoundClip> getListOfFiles(){
-//		return listOfFiles;
-//	}
-	
 	//Returnerar alla subalbum (endast denna nivå, inte rekursivt)
 	public Set<Album> getSubAlbums(){
 		return subAlbums;
 	}
-	
-	//Ta bort...
-//	Tar bort ett subalbum som finns i det här albumet
-//	public void deleteSubAlbums(String name) {
-//		for(Album a:subAlbums) {
-//			if(a.toString().equals(name)) {
-//				subAlbums.remove(a);
-//			} else {
-//				a.deleteSubAlbum(name);
-//			}
-//		}
-//	}
 	
 	//rekusivt går igenom alla subalbum och tar bort det album som matchar input-parametern 
 	public void deleteSubAlbum(Album b) {
