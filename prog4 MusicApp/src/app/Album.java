@@ -17,7 +17,13 @@ public class Album {
 		subAlbums = new HashSet<Album>();
 	}
 	
-	//söker och ser vilka sub album som hör till objektet
+	public Album(String name) {
+		subAlbums = new HashSet<Album>();
+		this.albumName = name;
+	}
+	
+	//söker och ser vilka subalbum som hör till objektet
+	//returnerar alla subalbum och alla subalbums subalbum
 	public Set<Album> listSubAlbums(){
 		Set<Album> album = new HashSet<Album>();
 		for(Album a:subAlbums) {
@@ -49,6 +55,14 @@ public class Album {
 	public void deleteSubAlbums(String name) {
 		for(Album a:subAlbums) {
 			if(a.toString().equals(name)) {
+				subAlbums.remove(a);
+			}
+		}
+	}
+	
+	public void deleteSubAlbum(Album b) {
+		for (Album a:subAlbums) {
+			if(a.equals(b)) {
 				subAlbums.remove(a);
 			}
 		}

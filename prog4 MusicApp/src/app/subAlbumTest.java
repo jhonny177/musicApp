@@ -42,10 +42,33 @@ class subAlbumTest {
 	}
 	
 	@Test
-	void newTest() {
+	void createSubalbums() {
+		Album root = new Album("root");
+		root.addSubAlbum(new Album("subalbum"));
+		root.getSubAlbums().iterator().next().addSubAlbum(new Album("subsubalbum"));
+		assertEquals("subsubalbum", root.getSubAlbums().iterator().next().getSubAlbums().iterator().next().toString());
+	}
+	
+	@Test
+	void removeAlbum() {
 		Album root = new Album();
 		root.addSubAlbum(new Album());
-		root.g
+		//root should have one sub album
+		assertEquals(1, root.getSubAlbums().size());
+		Album subA = root.getSubAlbums().iterator().next();
+		subA.setName("subalbum1");
+		//delete sub album
+		root.deleteSubAlbum(subA);
+		//root should have zero sub albums
+		assertEquals(0, root.getSubAlbums().size());
+	}
+	
+	@Test
+	void changeName() {
+		Album rootAlbum = new Album("root");
+		assertEquals("root", rootAlbum.toString());
+		rootAlbum.setName("roten");
+		assertEquals("roten",rootAlbum.toString());
 	}
 
 }
