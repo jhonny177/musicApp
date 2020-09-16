@@ -7,7 +7,7 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-class MangaeFilesTests {
+class ManageFilesTests {
 	
 	ManageFiles test;
 	ManageAlbum alb;
