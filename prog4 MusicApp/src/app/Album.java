@@ -9,6 +9,7 @@ import java.util.Set;
 
 public class Album {	
 	
+	public static Album root;
 	private String albumName;
 	private LinkedList<SoundClip> listOfFiles;
 	private Set<Album> subAlbums;
@@ -33,34 +34,60 @@ public class Album {
 		return album;
 	}
 	
+	//Skapar ett subalbum till albumet
 	public void addSubAlbum(Album a) {
 		subAlbums.add(a);
 	}
 	
+	//Lägger till en låt till albumet
+	public void addSong(SoundClip s) {
+		listOfFiles.add(s);
+	}
+	
+	
+	//Returnerar om en viss låt finns i albumet
+	public boolean songExists(SoundClip s) {
+		for(SoundClip sound:listOfFiles) {
+			if(sound.equals(s)) {
+				return true;
+			}
+		}
+		return false;
+	}
+		
 	@Override
 	public String toString() {
 		return albumName;
 	}
 	
+	//Ändrar på albumets namn
 	public void setName(String albumName) {
 		this.albumName = albumName;
 	}
-	public LinkedList<SoundClip> getListOfFiles(){
-		return listOfFiles;
-	}
+	
+//	Ska tas bort...
+//	public LinkedList<SoundClip> getListOfFiles(){
+//		return listOfFiles;
+//	}
+	
+	//Returnerar alla subalbum (endast denna nivå, inte rekursivt)
 	public Set<Album> getSubAlbums(){
 		return subAlbums;
 	}
 	
-	public void deleteSubAlbums(String name) {
-		for(Album a:subAlbums) {
-			if(a.toString().equals(name)) {
-				subAlbums.remove(a);
-			}
-		}
-	}
+	//Ta bort...
+//	Tar bort ett subalbum som finns i det här albumet
+//	public void deleteSubAlbums(String name) {
+//		for(Album a:subAlbums) {
+//			if(a.toString().equals(name)) {
+//				subAlbums.remove(a);
+//			} else {
+//				a.deleteSubAlbum(name);
+//			}
+//		}
+//	}
 	
-	//rekusivt går igenom alla subalbum och tar bort den som matchar input-parametern 
+	//rekusivt går igenom alla subalbum och tar bort det album som matchar input-parametern 
 	public void deleteSubAlbum(Album b) {
 		for (Album a:subAlbums) {
 			if(a.equals(b)) {
@@ -72,6 +99,8 @@ public class Album {
 		}
 	}
 
+	//Söker efter ett album med ett visst namn och returnerar det
+	//Går igenom albumet och alla sub album (och deras subalbum)  
 	public Album getAlbumByName(String name) {
 		Album toReturn = null;
 		for (Album a:subAlbums) {
@@ -86,5 +115,9 @@ public class Album {
 			}
 		}
 		return toReturn;
+	}
+
+	public void removeSong(SoundClip s) {
+		listOfFiles.remove(s);
 	}
 }
