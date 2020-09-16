@@ -116,6 +116,9 @@ public class Album {
 		}
 		return toReturn;
 	}
+	public LinkedList<SoundClip> getlistOfFiles(){
+		return listOfFiles;
+	}
 
 	public void removeSong(SoundClip s) {
 		listOfFiles.remove(s);
