@@ -7,9 +7,9 @@ public class ManageFiles {
 	Album root = Album.root;
 	
 	//lägger till det nya sound clippet i root albumet
-		public void createFile(File f) {
+		public SoundClip createFile(File f) {
 			SoundClip s = new SoundClip(f);
-			root.addSong(s);
+			return s;
 		}
 		
 	//tabort en fil i root albummet
@@ -24,29 +24,12 @@ public class ManageFiles {
 		
 	//sätta till en fil i ett sub album
 		public void addFileToSub(Album a ,SoundClip s) {
-			for(Album al:root.getSubAlbums()) {
-				if(al.equals(a)) {
-					al.addSong(s);
-				}
-			}
+			a.addSong(s);
 		}
 		
 	//tabort en fil i ett subAlbum och tar bort den från dess sub album
 		public void deleteFromSubAlbum(Album a,SoundClip s) {
-			Set<Album> temp = null;
-			for(Album al:root.getSubAlbums()) {
-				if(al.equals(a)) {
-					al.removeSong(s);
-				}
-				temp = al.listSubAlbums();
-			}
-			for(Album b:root.getSubAlbums()) {
-				for(Album t:temp) {
-					if(b.equals(t)) {
-						b.removeSong(s);
-					}
-				}
-			}
+			a.removeSong(s);
 		}
 		
 	//kontrollera om en ljud fil existerar i ett sub album
