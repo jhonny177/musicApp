@@ -1,4 +1,5 @@
-package src;
+package app;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -38,6 +39,13 @@ class subAlbumTest {
 			now += b;
 		}
 		assertEquals(now,outStr);
+	}
+	
+	@Test
+	void newTest() {
+		Album root = new Album();
+		root.addSubAlbum(new Album());
+		root.g
 	}
 
 }

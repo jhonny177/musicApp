@@ -1,4 +1,5 @@
-package src;
+package app;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -60,7 +61,7 @@ class MangaeAlbumTests {
 		test.createSubAlbum( "root", "anivå1");
 		test.createSubAlbum("root", "bnivå1");
 		test.createSubAlbum("anivå1", "anivå2");
-		test.findParentAlbum(findParent)
+		test.findParentAlbum(findParent);
 	}
 
 }

@@ -1,4 +1,5 @@
-package src;
+package app;
+
 
 
 import java.util.HashSet;
@@ -41,7 +42,7 @@ public class Album {
 	public LinkedList<SoundClip> getListOfFiles(){
 		return listOfFiles;
 	}
-	public Set<Album> getContainsSubAlbum(){
+	public Set<Album> getSubAlbums(){
 		return subAlbums;
 	}
 	
