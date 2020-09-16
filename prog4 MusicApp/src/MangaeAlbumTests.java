@@ -1,3 +1,5 @@
+package src;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Set;
@@ -19,19 +21,19 @@ class MangaeAlbumTests {
 	void testCreateSubAlbum() {
 		test = new ManageAlbum();
 		test.createRootAlbum("root");
-		test.createSubAlbum("root", "anivå1");
+		test.createSubAlbum( "root", "anivå1");
 		test.createSubAlbum("root", "bnivå1");
 		test.createSubAlbum("anivå1", "anivå2");
 		Set<Album> output = test.getAlbumList().get(0).getContainsSubAlbum();
 		String outStr = "";
 		for(Album a: output) {
-			outStr += a+" ";
+			outStr += a.toString()+" ";
 		}
 		assertEquals("bnivå1 anivå1 ",outStr);
 		output = test.getAlbumList().get(1).getContainsSubAlbum();
 		outStr = "";
 		for(Album a: output) {
-			outStr += a+" ";
+			outStr += a.toString()+" ";
 		}
 		assertEquals("anivå2 ",outStr);
 	}
@@ -50,6 +52,15 @@ class MangaeAlbumTests {
 		}
 		assertEquals("anivå1 ",outStr);
 		
+	}
+	@Test
+	void testFindparent() {
+		test = new ManageAlbum();
+		test.createRootAlbum("root");
+		test.createSubAlbum( "root", "anivå1");
+		test.createSubAlbum("root", "bnivå1");
+		test.createSubAlbum("anivå1", "anivå2");
+		test.findParentAlbum(findParent)
 	}
 
 }

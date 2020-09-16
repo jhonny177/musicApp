@@ -1,3 +1,5 @@
+package src;
+
 
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -8,8 +10,6 @@ public class Album {
 	
 	private String albumName;
 	private LinkedList<SoundClip> listOfFiles;
-	private Set<Album> containsSubAlbum = new HashSet<Album>();
-	
 	private Set<Album> subAlbums;
 	
 	public Album() {
@@ -44,17 +44,11 @@ public class Album {
 	public Set<Album> getContainsSubAlbum(){
 		return subAlbums;
 	}
-	public void setContainsSubAlbum(Set<Album> containsSubAlbum){
-		this.containsSubAlbum = containsSubAlbum;
-	}
-	// initizialiserar containsSubAlbum set
-	public void initilizeContainsSubAlbum() {
-		containsSubAlbum = new HashSet<Album>();
-	}
+	
 	public void deleteSubAlbums(String name) {
-		for(Album a:containsSubAlbum) {
-			if(a.equals(name)) {
-				containsSubAlbum.remove(a);
+		for(Album a:subAlbums) {
+			if(a.toString().equals(name)) {
+				subAlbums.remove(a);
 			}
 		}
 	}
