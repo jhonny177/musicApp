@@ -1,7 +1,5 @@
 package app;
 
-
-
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -99,10 +97,13 @@ public class Album {
 		}
 		return toReturn;
 	}
+	
+	//returnerar en lista med alla låtar i albumet
 	public List<SoundClip> getListOfFiles(){
 		return listOfFiles;
 	}
 
+	//Tar bort en låt från albumet
 	public void removeSong(SoundClip s) {
 		listOfFiles.remove(s);
 	}

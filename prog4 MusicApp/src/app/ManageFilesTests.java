@@ -30,7 +30,6 @@ class ManageFilesTests {
 		SoundClip s = test.createFile(file);
 		test.addFileToSub(alb.getRootAlbum(), s);
 		test.deleteFile(alb.getRootAlbum(), s);
-//		assertEquals(null,alb.getRootAlbum().getListOfFiles().get(0));
 		assertEquals(0,alb.getRootAlbum().getListOfFiles().size());
 	}
 	
