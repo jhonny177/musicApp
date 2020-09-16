@@ -15,14 +15,23 @@ class ManageFilesTests {
 	void creatFiletest() throws IOException {
 		test = new ManageFiles();
 		alb = new ManageAlbum();
+		File file = new File("hello");
 		alb.createRootAlbum("root");
-		File file = new File("../../te.txt");
 		SoundClip s = test.createFile(file);
 		test.addFileToSub(alb.getRootAlbum(), s);
-		
-//		file.createNewFile();
-//		test.createFile(file);
-//		assertEquals("hello",test.root.getlistOfFiles().getFirst().toString());
+		assertEquals("hello",alb.getRootAlbum().getListOfFiles().get(0).toString());
 	}
-
+	@Test
+	void deleteFiletest() {
+		test = new ManageFiles();
+		alb = new ManageAlbum();
+		File file = new File("lalasång");
+		alb.createRootAlbum("root");
+		SoundClip s = test.createFile(file);
+		test.addFileToSub(alb.getRootAlbum(), s);
+		test.deleteFile(alb.getRootAlbum(), s);
+//		assertEquals(null,alb.getRootAlbum().getListOfFiles().get(0));
+		assertEquals(0,alb.getRootAlbum().getListOfFiles().size());
+	}
+	
 }
