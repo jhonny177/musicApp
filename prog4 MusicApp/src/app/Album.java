@@ -9,15 +9,12 @@ import java.util.Set;
 
 public class Album {	
 	
+	//En statisk referens till rootalbumet så att ManageFiles kan nå albumen
 	public static Album root;
+	
 	private String albumName;
 	private LinkedList<SoundClip> listOfFiles;
 	private Set<Album> subAlbums;
-	
-	public Album() {
-		subAlbums = new HashSet<Album>();
-		listOfFiles = new LinkedList<SoundClip>();
-	}
 	
 	public Album(String name) {
 		subAlbums = new HashSet<Album>();
@@ -67,27 +64,10 @@ public class Album {
 		this.albumName = albumName;
 	}
 	
-//	Ska tas bort...
-//	public LinkedList<SoundClip> getListOfFiles(){
-//		return listOfFiles;
-//	}
-	
 	//Returnerar alla subalbum (endast denna nivå, inte rekursivt)
 	public Set<Album> getSubAlbums(){
 		return subAlbums;
 	}
-	
-	//Ta bort...
-//	Tar bort ett subalbum som finns i det här albumet
-//	public void deleteSubAlbums(String name) {
-//		for(Album a:subAlbums) {
-//			if(a.toString().equals(name)) {
-//				subAlbums.remove(a);
-//			} else {
-//				a.deleteSubAlbum(name);
-//			}
-//		}
-//	}
 	
 	//rekusivt går igenom alla subalbum och tar bort det album som matchar input-parametern 
 	public void deleteSubAlbum(Album b) {
@@ -118,7 +98,7 @@ public class Album {
 		}
 		return toReturn;
 	}
-	public LinkedList<SoundClip> getlistOfFiles(){
+	public LinkedList<SoundClip> getListOfFiles(){
 		return listOfFiles;
 	}
 

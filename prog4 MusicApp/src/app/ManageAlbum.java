@@ -15,13 +15,6 @@ public class ManageAlbum{
 //		albums.add(a);
 	}
 	
-	//Ta bort...
-//	//lägger till det nya sound clippet i root albumet
-//	public void createFile(File f) {
-//		SoundClip s = new SoundClip(f);
-//		root.getListOfFiles().add(s);
-//	}
-	
 	//skapar ett subalbum åt ett annat album
 	public void createSubAlbum(Album parent, String name) {
 		parent.addSubAlbum(new Album(name));
