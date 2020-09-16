@@ -23,11 +23,19 @@ public class ManageFiles extends Album {
 		}
 	//tabort en fil i ett subAlbum och tar bort den från dess sub album
 		public void deleteFromSubAlbum(Album a,SoundClip s) {
+			Set<Album> temp = null;
 			for(Album al:getSubAlbums()) {
 				if(al.equals(a)) {
 					al.getListOfFiles().remove(s);
 				}
-				Set<Album> temp = al.listSubAlbums();
+				temp = al.listSubAlbums();
+			}
+			for(Album b:getSubAlbums()) {
+				for(Album t:temp) {
+					if(b.equals(t)) {
+						b.getListOfFiles().remove(s);
+					}
+				}
 			}
 		}
 		
