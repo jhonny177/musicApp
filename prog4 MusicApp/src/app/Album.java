@@ -9,6 +9,7 @@ import java.util.Set;
 
 public class Album {	
 	
+	public static Album root;
 	private String albumName;
 	private LinkedList<SoundClip> listOfFiles;
 	private Set<Album> subAlbums;
@@ -44,6 +45,16 @@ public class Album {
 	}
 	
 	
+	//Returnerar om en viss låt finns i albumet
+	public boolean songExists(SoundClip s) {
+		for(SoundClip sound:listOfFiles) {
+			if(sound.equals(s)) {
+				return true;
+			}
+		}
+		return false;
+	}
+		
 	@Override
 	public String toString() {
 		return albumName;
@@ -104,5 +115,9 @@ public class Album {
 			}
 		}
 		return toReturn;
+	}
+
+	public void removeSong(SoundClip s) {
+		listOfFiles.remove(s);
 	}
 }
