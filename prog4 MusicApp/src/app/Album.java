@@ -4,6 +4,7 @@ package app;
 
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 
@@ -13,7 +14,7 @@ public class Album {
 	public static Album root;
 	
 	private String albumName;
-	private LinkedList<SoundClip> listOfFiles;
+	private List<SoundClip> listOfFiles;
 	private Set<Album> subAlbums;
 	
 	public Album(String name) {
