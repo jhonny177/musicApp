@@ -16,10 +16,12 @@ public class Album {
 	
 	public Album() {
 		subAlbums = new HashSet<Album>();
+		listOfFiles = new LinkedList<SoundClip>();
 	}
 	
 	public Album(String name) {
 		subAlbums = new HashSet<Album>();
+		listOfFiles = new LinkedList<SoundClip>();
 		this.albumName = name;
 	}
 	

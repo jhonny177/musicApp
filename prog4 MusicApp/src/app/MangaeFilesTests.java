@@ -15,9 +15,10 @@ class MangaeFilesTests {
 	void creatFiletest() throws IOException {
 		test = new ManageFiles();
 		alb = new ManageAlbum();
+		alb.createRootAlbum("root");
 		File file = new File("../../te.txt");
 		SoundClip s = test.createFile(file);
-		test.addFileToSub(alb.getRootAlbum(), s);
+		test.addFileToSub(Album.root, s);
 		
 //		file.createNewFile();
 //		test.createFile(file);
