@@ -18,7 +18,7 @@ class ManageFilesTests {
 		alb.createRootAlbum("root");
 		File file = new File("../../te.txt");
 		SoundClip s = test.createFile(file);
-		test.addFileToSub(Album.root, s);
+		test.addFileToSub(alb.getRootAlbum(), s);
 		
 //		file.createNewFile();
 //		test.createFile(file);

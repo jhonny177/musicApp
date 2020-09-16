@@ -11,7 +11,7 @@ import java.util.Set;
 public class Album {	
 	
 	//En statisk referens till rootalbumet så att ManageFiles kan nå albumen
-	public static Album root;
+//	public static Album root;
 	
 	private String albumName;
 	private List<SoundClip> listOfFiles;
@@ -99,7 +99,7 @@ public class Album {
 		}
 		return toReturn;
 	}
-	public LinkedList<SoundClip> getListOfFiles(){
+	public List<SoundClip> getListOfFiles(){
 		return listOfFiles;
 	}
 

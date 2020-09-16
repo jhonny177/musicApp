@@ -8,7 +8,7 @@ public class ManageAlbum{
 	//skapar ett root album
 	public void createRootAlbum(String name) {;
 	 	root = new Album(name);
-	 	Album.root = root;
+//	 	Album.root = root;
 //		Album a = new Album();
 //		albums = new LinkedList<Album>();
 //		a.setName(name);

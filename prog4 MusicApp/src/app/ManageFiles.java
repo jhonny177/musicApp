@@ -4,8 +4,6 @@ import java.util.Set;
 
 public class ManageFiles {
 	
-	Album root = Album.root;
-	
 	//lägger till det nya sound clippet i root albumet
 		public SoundClip createFile(File f) {
 			SoundClip s = new SoundClip(f);
@@ -13,7 +11,7 @@ public class ManageFiles {
 		}
 		
 	//tabort en fil i root albummet
-		public void deleteFile(SoundClip s) {
+		public void deleteFile(Album root,SoundClip s) {
 			root.removeSong(s);
 			for(Album a:root.getSubAlbums()) {
 				if(fileExists(a,s)==true) {
