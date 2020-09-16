@@ -28,7 +28,7 @@ public class ManageFiles {
 		}
 		
 	//tabort en fil i ett subAlbum och tar bort den från dess sub album
-		public void deleteFromSubAlbum(Album a,SoundClip s) {
+		public void deleteFileFromSub(Album a,SoundClip s) {
 			a.removeSong(s);
 		}
 		

@@ -16,12 +16,9 @@ class subAlbumTest {
 	
 	@Test
 	void test() {
-		test = new Album();
-		sub = new Album();
-		subSub = new Album();
-		test.setName("god");
-		sub.setName("morgon");
-		subSub.setName("igen");
+		test = new Album("god");
+		sub = new Album("morgon");
+		subSub = new Album("igen");
 		sub.addSubAlbum(subSub);
 		test.addSubAlbum(sub);
 		//testar outputten av subAlbum()
@@ -51,8 +48,8 @@ class subAlbumTest {
 	
 	@Test
 	void removeAlbum() {
-		Album root = new Album();
-		root.addSubAlbum(new Album());
+		Album root = new Album("root");
+		root.addSubAlbum(new Album("sub"));
 		//root should have one sub album
 		assertEquals(1, root.getSubAlbums().size());
 		Album subA = root.getSubAlbums().iterator().next();

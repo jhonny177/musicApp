@@ -9,15 +9,12 @@ import java.util.Set;
 
 public class Album {	
 	
+	//En statisk referens till rootalbumet så att ManageFiles kan nå albumen
 	public static Album root;
+	
 	private String albumName;
 	private LinkedList<SoundClip> listOfFiles;
 	private Set<Album> subAlbums;
-	
-	public Album() {
-		subAlbums = new HashSet<Album>();
-		listOfFiles = new LinkedList<SoundClip>();
-	}
 	
 	public Album(String name) {
 		subAlbums = new HashSet<Album>();
@@ -101,7 +98,7 @@ public class Album {
 		}
 		return toReturn;
 	}
-	public LinkedList<SoundClip> getlistOfFiles(){
+	public LinkedList<SoundClip> getListOfFiles(){
 		return listOfFiles;
 	}
 
