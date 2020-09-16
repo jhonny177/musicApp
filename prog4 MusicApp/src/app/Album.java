@@ -6,15 +6,13 @@ import java.util.List;
 import java.util.Set;
 
 
-public class Album {	
-	
-	//En statisk referens till rootalbumet så att ManageFiles kan nå albumen
-//	public static Album root;
+public class Album {
 	
 	private String albumName;
 	private List<SoundClip> listOfFiles;
 	private Set<Album> subAlbums;
 	
+	//constructor
 	public Album(String name) {
 		subAlbums = new HashSet<Album>();
 		listOfFiles = new LinkedList<SoundClip>();
