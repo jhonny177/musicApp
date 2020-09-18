@@ -1,16 +1,18 @@
 import java.util.List;
 import java.util.Set;
 
+import app.Album;
+
 public class MusicOrganizerController {
 
 	private MusicOrganizerWindow view;
 	private SoundClipBlockingQueue queue;
-	private ADD_YOUR_ALBUM_TYPE root;
+	private Album root;
 	
 	public MusicOrganizerController() {
 		
 		// TODO: Create the root album for all sound clips
-		root = new ADD_YOUR_ALBUM_TYPE("All Sound Clips");
+		root = new Album("All Sound Clips");
 		
 		// Create the View in Model-View-Controller
 		view = new MusicOrganizerWindow(this);
@@ -36,7 +38,7 @@ public class MusicOrganizerController {
 	/**
 	 * Returns the root album
 	 */
-	public ADD_YOUR_ALBUM_TYPE getRootAlbum(){
+	public Album getRootAlbum(){
 		return root;
 	}
 	
