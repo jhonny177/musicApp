@@ -5,6 +5,8 @@ import java.util.Set;
 
 import javax.swing.JList;
 
+import app.Album;
+
 public class SoundClipTable extends JList {
 
 	private List<SoundClip> clips;
@@ -19,7 +21,7 @@ public class SoundClipTable extends JList {
 	 * Displays the contents of the specified album
 	 * @param a - the album which contents are to be displayed
 	 */
-	public void display(ADD_YOUR_ALBUM_TYPE a){
+	public void display(Album a){
 		this.clearTable();
 		
 		// TODO: Add all sound clips found in 'a'
