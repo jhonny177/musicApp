@@ -44,6 +44,8 @@ class subAlbumTest {
 		root.addSubAlbum(new Album("subalbum"));
 		root.getSubAlbums().iterator().next().addSubAlbum(new Album("subsubalbum"));
 		assertEquals("subsubalbum", root.getSubAlbums().iterator().next().getSubAlbums().iterator().next().toString());
+		assertEquals(root,root.getSubAlbums().iterator().next().getParentAlbum());
+		assertEquals(root.getSubAlbums().iterator().next(),root.getSubAlbums().iterator().next().getSubAlbums().iterator().next().getParentAlbum());
 	}
 	
 	@Test

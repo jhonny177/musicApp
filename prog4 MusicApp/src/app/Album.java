@@ -9,6 +9,7 @@ import java.util.Set;
 public class Album {
 	
 	private String albumName;
+	private Album parentAlbum;
 	private List<SoundClip> listOfFiles;
 	private Set<Album> subAlbums;
 	
@@ -33,6 +34,7 @@ public class Album {
 	//Skapar ett subalbum till albumet
 	public void addSubAlbum(Album a) {
 		subAlbums.add(a);
+		a.setParentAlbum(this);
 	}
 	
 	//Lägger till en låt till albumet
@@ -43,12 +45,7 @@ public class Album {
 	
 	//Returnerar om en viss låt finns i albumet
 	public boolean songExists(SoundClip s) {
-		for(SoundClip sound:listOfFiles) {
-			if(sound.equals(s)) {
-				return true;
-			}
-		}
-		return false;
+		return listOfFiles.contains(s);
 	}
 		
 	@Override
@@ -60,6 +57,15 @@ public class Album {
 	public void setName(String albumName) {
 		this.albumName = albumName;
 	}
+	//sätter albummet att peka på sitt förälder album förutom root albummet
+	public void setParentAlbum(Album parent) {
+		parentAlbum = parent;
+	}
+	//hämtar förälderalbummet
+	public Album getParentAlbum() {
+		return parentAlbum;
+	}
+	
 	
 	//Returnerar alla subalbum (endast denna nivå, inte rekursivt)
 	public Set<Album> getSubAlbums(){
