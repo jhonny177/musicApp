@@ -15,7 +15,7 @@ public class MusicOrganizerController {
 	
 	public MusicOrganizerController() {
 		
-		// TODO: Create the root album for all sound clips
+		// Create the root album for all sound clips
 		root = new Album("All Sound Clips");
 		
 		// Create the View in Model-View-Controller
@@ -50,8 +50,7 @@ public class MusicOrganizerController {
 	/**
 	 * Adds an album to the Music Organizer
 	 */
-	public void addNewAlbum(){ //TODO Update parameters if needed - e.g. you might want to give the currently selected album as parameter
-		// TODO: Add your code here
+	public void addNewAlbum(){ 
 		String name = view.promptForAlbumName();
 		if (name != null) {
 			Album a = new Album(name);
@@ -63,7 +62,7 @@ public class MusicOrganizerController {
 	/**
 	 * Removes an album from the Music Organizer
 	 */
-	public void deleteAlbum(){ //TODO Update parameters if needed
+	public void deleteAlbum(){
 		Album a = view.getSelectedAlbum();
 		a.getParentAlbum().deleteSubAlbum(a);
 		view.onAlbumRemoved(a);
@@ -71,8 +70,7 @@ public class MusicOrganizerController {
 	/**
 	 * Adds sound clips to an album
 	 */
-	public void addSoundClips(){ //TODO Update parameters if needed
-		// TODO: Add your code here
+	public void addSoundClips(){
 		Album a = view.getSelectedAlbum();
 		List<SoundClip> s = view.getSelectedSoundClips();
 		a.addAllSongs(s);
@@ -81,8 +79,7 @@ public class MusicOrganizerController {
 	/**
 	 * Removes sound clips from an album
 	 */
-	public void removeSoundClips(){ //TODO Update parameters if needed
-		// TODO: Add your code here
+	public void removeSoundClips() {
 		List<SoundClip> s = view.getSelectedSoundClips();
 		view.getSelectedAlbum().removeAllSongs(s);
 		view.onClipsUpdated();

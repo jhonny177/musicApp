@@ -94,11 +94,6 @@ public class MusicOrganizerWindow extends JFrame {
 				if (e.getButton() == MouseEvent.BUTTON1 && e.getClickCount() == 2){
 					Album a = getSelectedAlbum();
 					clipTable.display(a);
-					// TODO YOUR CODE HERE
-					// The code here gets invoked whenever the user double clicks in the album tree
-					
-					
-					System.out.println("show the sound clips for album " + getSelectedTreeNode().getUserObject());
 				}
 			}
 		});
@@ -118,10 +113,6 @@ public class MusicOrganizerWindow extends JFrame {
 				// if left-double-click @@@changed =2 to ==1
 				if (e.getButton() == MouseEvent.BUTTON1 && e.getClickCount() == 2){
 					
-					// TODO YOUR CODE HERE
-					// The code here gets invoked whenever the uses double clicks on the list of sound clips
-					
-					System.out.println("clicked on clipTable");
 					controller.playSoundClips();
 					
 				}
@@ -207,7 +198,7 @@ public class MusicOrganizerWindow extends JFrame {
 		for(Enumeration e = ((DefaultMutableTreeNode) model.getRoot()).breadthFirstEnumeration(); e.hasMoreElements();){
 			DefaultMutableTreeNode parent = (DefaultMutableTreeNode) e.nextElement();
 			
-			// TODO: Get the parent album of newAlbum
+			//Get the parent album of newAlbum
 			Album parentAlbum = newAlbum.getParentAlbum(); 
 			
 			
