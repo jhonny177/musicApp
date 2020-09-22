@@ -1,6 +1,8 @@
 import java.util.LinkedList;
 import java.util.List;
 
+import app.SoundClip;
+
 public class SoundClipBlockingQueue {
 
 	private List<SoundClip> queue = new LinkedList<SoundClip>();

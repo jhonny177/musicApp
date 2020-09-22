@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.swing.JList;
 
 import app.Album;
+import app.SoundClip;
 
 public class SoundClipTable extends JList {
 
@@ -23,7 +24,7 @@ public class SoundClipTable extends JList {
 	 */
 	public void display(Album a){
 		this.clearTable();
-		
+		clips = a.getListOfFiles();
 		// TODO: Add all sound clips found in 'a'
 		// to the instance variable 'clips'.
 		//

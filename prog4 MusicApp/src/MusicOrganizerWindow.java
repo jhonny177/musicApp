@@ -16,6 +16,7 @@ import javax.swing.tree.DefaultTreeSelectionModel;
 import javax.swing.tree.TreePath;
 
 import app.Album;
+import app.SoundClip;
 
 
 public class MusicOrganizerWindow extends JFrame {
@@ -91,7 +92,8 @@ public class MusicOrganizerWindow extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				// if left-double-click @@@changed =2 to ==1
 				if (e.getButton() == MouseEvent.BUTTON1 && e.getClickCount() == 2){
-					
+					Album a = getSelectedAlbum();
+					clipTable.display(a);
 					// TODO YOUR CODE HERE
 					// The code here gets invoked whenever the user double clicks in the album tree
 					

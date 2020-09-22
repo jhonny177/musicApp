@@ -4,7 +4,7 @@ import java.util.Set;
 
 public class ManageFiles {
 	
-	//lägger till det nya sound clippet i root albumetasdasdadasdasdasdasd
+	//lägger till det nya sound clippet i root albumet
 	public SoundClip createFile(File f) {
 		SoundClip s = new SoundClip(f);
 		return s;

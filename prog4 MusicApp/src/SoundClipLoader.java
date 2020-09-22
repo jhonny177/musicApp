@@ -5,6 +5,8 @@ import java.io.FilenameFilter;
 import java.util.HashSet;
 import java.util.Set;
 
+import app.SoundClip;
+
 /**
  * SoundClipLoader finds sound clip files on disk.
  */

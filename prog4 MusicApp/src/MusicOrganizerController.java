@@ -2,12 +2,15 @@ import java.util.List;
 import java.util.Set;
 
 import app.Album;
+import app.ManageAlbum;
+import app.SoundClip;
 
 public class MusicOrganizerController {
 
 	private MusicOrganizerWindow view;
 	private SoundClipBlockingQueue queue;
 	private Album root;
+	
 	
 	public MusicOrganizerController() {
 		
@@ -30,8 +33,9 @@ public class MusicOrganizerController {
 	 */
 	public Set<SoundClip> loadSoundClips(String path) {
 		Set<SoundClip> clips = SoundClipLoader.loadSoundClips(path);
-		// TODO: Add the loaded sound clips to the root album
-
+		for(SoundClip s:clips) {
+		root.addSong(s);	
+		}
 		return clips;
 	}
 	
