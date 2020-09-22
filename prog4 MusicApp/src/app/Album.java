@@ -37,14 +37,22 @@ public class Album {
 		a.setParentAlbum(this);
 	}
 	
+	
 	//Lägger till en låt till albumet och alla föräldra album får låten satt i sig
 	public void addSong(SoundClip s) {
-		listOfFiles.add(s);
+		if (!listOfFiles.contains(s)) {
+			listOfFiles.add(s);
+		}
 		if(getParentAlbum()!=null) {
 			getParentAlbum().addSong(s);
 		}
 	}
 	
+	public void addAllSongs(List<SoundClip> s) {
+		for (SoundClip o: s) {
+			addSong(o);
+		}
+	}
 	
 	//Returnerar om en viss låt finns i albumet
 	public boolean songExists(SoundClip s) {
@@ -113,5 +121,14 @@ public class Album {
 	//Tar bort en låt från albumet
 	public void removeSong(SoundClip s) {
 		listOfFiles.remove(s);
+		for (Album a:subAlbums) {
+			a.removeSong(s);
+		}
+	}
+	
+	public void removeAllSongs(List<SoundClip> s) {
+		for (SoundClip o: s) {
+			removeSong(o);
+		}
 	}
 }

@@ -122,7 +122,7 @@ public class MusicOrganizerWindow extends JFrame {
 					// The code here gets invoked whenever the uses double clicks on the list of sound clips
 					
 					System.out.println("clicked on clipTable");
-					
+					controller.playSoundClips();
 					
 				}
 			}

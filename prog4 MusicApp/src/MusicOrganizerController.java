@@ -10,6 +10,7 @@ public class MusicOrganizerController {
 	private MusicOrganizerWindow view;
 	private SoundClipBlockingQueue queue;
 	private Album root;
+	private Album album;
 	
 	
 	public MusicOrganizerController() {
@@ -51,20 +52,30 @@ public class MusicOrganizerController {
 	 */
 	public void addNewAlbum(){ //TODO Update parameters if needed - e.g. you might want to give the currently selected album as parameter
 		// TODO: Add your code here
+		String name = view.promptForAlbumName();
+		if (name != null) {
+			Album a = new Album(name);
+			view.getSelectedAlbum().addSubAlbum(a);
+			view.onAlbumAdded(a);
+		}
 	}
 	
 	/**
 	 * Removes an album from the Music Organizer
 	 */
 	public void deleteAlbum(){ //TODO Update parameters if needed
-		// TODO: Add your code here
+		Album a = view.getSelectedAlbum();
+		a.getParentAlbum().deleteSubAlbum(a);
+		view.onAlbumRemoved(a);
 	}
-	
 	/**
 	 * Adds sound clips to an album
 	 */
 	public void addSoundClips(){ //TODO Update parameters if needed
 		// TODO: Add your code here
+		Album a = view.getSelectedAlbum();
+		List<SoundClip> s = view.getSelectedSoundClips();
+		a.addAllSongs(s);
 	}
 	
 	/**
@@ -72,6 +83,9 @@ public class MusicOrganizerController {
 	 */
 	public void removeSoundClips(){ //TODO Update parameters if needed
 		// TODO: Add your code here
+		List<SoundClip> s = view.getSelectedSoundClips();
+		view.getSelectedAlbum().removeAllSongs(s);
+		view.onClipsUpdated();
 	}
 	
 	/**
