@@ -3,6 +3,7 @@ package app;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -73,12 +74,35 @@ class subAlbumTest {
 	void save() {
 		
 		Album root = new Album("root");
-		Album sub = new Album("sub");
-		root.addSubAlbum(sub);
+		root.addSong(new SoundClip(new File("Sången")));
+//		Album sub = new Album("sub");
+		root.addSubAlbum(new Album("sub"));
 		AlbumCaretaker care = new AlbumCaretaker();
-		care.saveState(root);
+		
+			care.saveState(root);
+		
 		assertEquals(root,root.getSubAlbums().iterator().next().getParentAlbum());
-		root.deleteSubAlbum(sub);
+
+			System.out.println("Borde innehålla sub " + root.getSubAlbums());
+		
+			root.deleteSubAlbum(root.getAlbumByName("sub"));
+		
+			System.out.println("Tar bort...\nBorde vara tom " + root.getSubAlbums());
+			
+//		Album toBeRestored = new Album("toBeRestored");
+//		System.out.println("Fortfarande tom " + root.getSubAlbums());
+		
+			care.restoreState(root);
+		
+//		System.out.println("Är nu restored men inte insatt " + root.getSubAlbums());
+//		root.addSubAlbum(toBeRestored);
+//		System.out.println(root.getListOfFiles());
+//		System.out.println(toBeRestored.getListOfFiles());
+		
+			System.out.println("Borde vara tillbaka " + root.getSubAlbums());
+
+		//		System.out.println(sub.toString());
+//		care.restoreState(sub);
 		
 	}
 

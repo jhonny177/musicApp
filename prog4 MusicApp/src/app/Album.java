@@ -134,15 +134,19 @@ public class Album {
 		
 	//sparar objectet som det är 
 	public Memento save() {
+		System.out.println("Subalbum som sparas : " + subAlbums);
 		return new Memento(albumName,parentAlbum,listOfFiles,subAlbums);
 	}
 	//återsteller senaste ändringen
 	public void restoreObj(Object al) {
+		System.out.println("Before "+ albumName + parentAlbum + listOfFiles + subAlbums);
 		Memento memento = (Memento) al;
 		albumName = memento.mementoAlbumName;
 		parentAlbum = memento.mementoParentAlbum;
 		listOfFiles = memento.mementoListOfFiles;
 		subAlbums = memento.mementoSubAlbums;
+		System.out.println("After " + albumName + parentAlbum + listOfFiles + subAlbums);
+//		getParentAlbum().addSubAlbum(this);
 	}
 	
 	private class Memento {
@@ -157,6 +161,7 @@ public class Album {
 			this.mementoParentAlbum = parentAlbum;
 			this.mementoListOfFiles = listOfSoundFiles;
 			this.mementoSubAlbums = subAlbums;
+			System.out.println("Finns i mementos mementoSubAlbums: " + mementoSubAlbums);
 		}
 		
 	
