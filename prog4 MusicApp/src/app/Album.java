@@ -125,10 +125,39 @@ public class Album {
 			a.removeSong(s);
 		}
 	}
-	
+	//tar bort alla songer i allbumet
 	public void removeAllSongs(List<SoundClip> s) {
 		for (SoundClip o: s) {
 			removeSong(o);
 		}
 	}
+		
+	//sparar objectet som det är 
+	public Memento save() {
+		return new Memento(albumName,parentAlbum,listOfFiles,subAlbums);
+	}
+	//återsteller senaste ändringen
+	public void restoreObj(Object al) {
+		Memento memento = (Memento) al;
+		albumName = memento.mementoAlbumName;
+		parentAlbum = memento.mementoParentAlbum;
+		listOfFiles = memento.mementoListOfFiles;
+		subAlbums = memento.mementoSubAlbums;
+	}
+		private class Memento {
+			
+			private String mementoAlbumName;
+			private Album mementoParentAlbum;
+			private List<SoundClip> mementoListOfFiles;
+			private Set<Album> mementoSubAlbums;
+		
+			public Memento(String albumName, Album parentAlbum,List<SoundClip> listOfSoundFiles,Set<Album> subAlbums ) {
+				this.mementoAlbumName = albumName;
+				this.mementoParentAlbum = parentAlbum;
+				this.mementoListOfFiles = listOfSoundFiles;
+				this.mementoSubAlbums = subAlbums;
+			}
+			
+		
+		}
 }

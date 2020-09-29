@@ -69,5 +69,17 @@ class subAlbumTest {
 		rootAlbum.setName("roten");
 		assertEquals("roten",rootAlbum.toString());
 	}
+	@Test
+	void save() {
+		
+		Album root = new Album("root");
+		Album sub = new Album("sub");
+		root.addSubAlbum(sub);
+		AlbumCaretaker care = new AlbumCaretaker();
+		care.saveState(root);
+		assertEquals(root,root.getSubAlbums().iterator().next().getParentAlbum());
+		root.deleteSubAlbum(sub);
+		
+	}
 
 }
