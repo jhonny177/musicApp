@@ -96,4 +96,16 @@ public class MusicOrganizerController {
 		for(int i=0;i<l.size();i++)
 			queue.enqueue(l.get(i));
 	}
+	/**
+	 * undo last change in application
+	 */
+	public void undoChange() {
+		
+	}
+	/**
+	 * redo last undo change in application
+	 */
+	public void redo() {
+		
+	}
 }
