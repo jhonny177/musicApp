@@ -144,20 +144,21 @@ public class Album {
 		listOfFiles = memento.mementoListOfFiles;
 		subAlbums = memento.mementoSubAlbums;
 	}
-		private class Memento {
-			
-			private String mementoAlbumName;
-			private Album mementoParentAlbum;
-			private List<SoundClip> mementoListOfFiles;
-			private Set<Album> mementoSubAlbums;
+	
+	private class Memento {
 		
-			public Memento(String albumName, Album parentAlbum,List<SoundClip> listOfSoundFiles,Set<Album> subAlbums ) {
-				this.mementoAlbumName = albumName;
-				this.mementoParentAlbum = parentAlbum;
-				this.mementoListOfFiles = listOfSoundFiles;
-				this.mementoSubAlbums = subAlbums;
-			}
-			
-		
+		private String mementoAlbumName;
+		private Album mementoParentAlbum;
+		private List<SoundClip> mementoListOfFiles;
+		private Set<Album> mementoSubAlbums;
+	
+		public Memento(String albumName, Album parentAlbum,List<SoundClip> listOfSoundFiles,Set<Album> subAlbums ) {
+			this.mementoAlbumName = albumName;
+			this.mementoParentAlbum = parentAlbum;
+			this.mementoListOfFiles = listOfSoundFiles;
+			this.mementoSubAlbums = subAlbums;
 		}
+		
+	
+	}
 }
