@@ -134,6 +134,7 @@ public class MusicOrganizerButtonPanel extends JPanel {
 		ImageIcon undoIcon = new ImageIcon("icons/Actions-blue-arrow-undo-icon.png");
 		JButton undoButton = new JButton(undoIcon);
 		undoButton.setToolTipText("undo last change");
+		undoButton.setEnabled(false);
 		undoButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.undoChange();
