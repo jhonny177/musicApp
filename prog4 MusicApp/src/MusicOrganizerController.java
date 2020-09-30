@@ -11,8 +11,11 @@ public class MusicOrganizerController {
 	private MusicOrganizerWindow view;
 	private SoundClipBlockingQueue queue;
 	private Album root;
+<<<<<<< HEAD
 	private Album album;
 	private AlbumCaretaker care;
+=======
+>>>>>>> branch 'master' of https://github.com/jhonny177/musicApp
 	
 	
 	public MusicOrganizerController() {
@@ -38,9 +41,10 @@ public class MusicOrganizerController {
 	 */
 	public Set<SoundClip> loadSoundClips(String path) {
 		Set<SoundClip> clips = SoundClipLoader.loadSoundClips(path);
-		for(SoundClip s:clips) {
-		root.addSong(s);	
-		}
+//		for(SoundClip s:clips) {
+//		root.addSong(s);	
+//		}
+		root.addAllSongs(clips);
 		return clips;
 	}
 	
@@ -56,11 +60,16 @@ public class MusicOrganizerController {
 	 */
 	public void addNewAlbum(){ 
 		String name = view.promptForAlbumName();
-		if (name != null) {
+		Album al = view.getSelectedAlbum();
+		if (name != null && al != null) {
 			Album a = new Album(name);
+<<<<<<< HEAD
 			album = a;
 			care.saveState(album);
 			view.getSelectedAlbum().addSubAlbum(a);
+=======
+			al.addSubAlbum(a);
+>>>>>>> branch 'master' of https://github.com/jhonny177/musicApp
 			view.onAlbumAdded(a);
 		}
 	}
@@ -70,31 +79,54 @@ public class MusicOrganizerController {
 	 */
 	public void deleteAlbum(){
 		Album a = view.getSelectedAlbum();
+<<<<<<< HEAD
 		album = a;
 		care.saveState(album);
 		a.getParentAlbum().deleteSubAlbum(a);
 		view.onAlbumRemoved(a);
+=======
+		if (a != null) {
+			a.getParentAlbum().deleteSubAlbum(a);
+			view.onAlbumRemoved(a);
+		}
+>>>>>>> branch 'master' of https://github.com/jhonny177/musicApp
 	}
 	/**
 	 * Adds sound clips to an album
 	 */
 	public void addSoundClips(){
 		Album a = view.getSelectedAlbum();
+<<<<<<< HEAD
 		album = a;
 		care.saveState(album);
 		List<SoundClip> s = view.getSelectedSoundClips();
 		a.addAllSongs(s);
+=======
+		if (a != null) {
+			Set<SoundClip> s = view.getSelectedSoundClips();
+			a.addAllSongs(s);
+		}
+>>>>>>> branch 'master' of https://github.com/jhonny177/musicApp
 	}
 	
 	/**
 	 * Removes sound clips from an album
 	 */
 	public void removeSoundClips() {
+<<<<<<< HEAD
 		List<SoundClip> s = view.getSelectedSoundClips();
 		album = view.getSelectedAlbum();
 		care.saveState(album);
 		view.getSelectedAlbum().removeAllSongs(s);
 		view.onClipsUpdated();
+=======
+		Set<SoundClip> s = view.getSelectedSoundClips();
+		Album a = view.getSelectedAlbum();
+		if (s != null && a != null) {
+			a.removeAllSongs(s);
+			view.onClipsUpdated();
+		}
+>>>>>>> branch 'master' of https://github.com/jhonny177/musicApp
 	}
 	
 	/**
@@ -103,10 +135,12 @@ public class MusicOrganizerController {
 	 * this method is called, the selected sound clips in the 
 	 * SoundClipTable are played.
 	 */
-	public void playSoundClips(){
-		List<SoundClip> l = view.getSelectedSoundClips();
-		for(int i=0;i<l.size();i++)
-			queue.enqueue(l.get(i));
+	public void playSoundClips() {
+		Set<SoundClip> l = view.getSelectedSoundClips();
+		while (l.iterator().hasNext()) {
+			queue.enqueue(l.iterator().next());
+			l.iterator().remove();
+		}
 	}
 	/**
 	 * undo last change in application
@@ -120,7 +154,7 @@ public class MusicOrganizerController {
 	/**
 	 * redo last undo change in application
 	 */
-	public void redo() {
+	public void redoChange() {
 		
 	}
 }

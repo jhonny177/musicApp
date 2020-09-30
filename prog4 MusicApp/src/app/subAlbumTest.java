@@ -74,36 +74,22 @@ class subAlbumTest {
 	void save() {
 		
 		Album root = new Album("root");
-		root.addSong(new SoundClip(new File("Sången")));
-//		Album sub = new Album("sub");
 		root.addSubAlbum(new Album("sub"));
+		root.getSubAlbums().iterator().next().addSong(new SoundClip(new File("Sången")));
 		AlbumCaretaker care = new AlbumCaretaker();
-		
-			care.saveState(root);
-		
-		assertEquals(root,root.getSubAlbums().iterator().next().getParentAlbum());
 
-			System.out.println("Borde innehålla sub " + root.getSubAlbums());
+		//Save
+		care.saveState(root);
+		assertEquals("[sub]", root.getSubAlbums().toString());
 		
-			root.deleteSubAlbum(root.getAlbumByName("sub"));
-		
-			System.out.println("Tar bort...\nBorde vara tom " + root.getSubAlbums());
-			
-//		Album toBeRestored = new Album("toBeRestored");
-//		System.out.println("Fortfarande tom " + root.getSubAlbums());
-		
-			care.restoreState(root);
-		
-//		System.out.println("Är nu restored men inte insatt " + root.getSubAlbums());
-//		root.addSubAlbum(toBeRestored);
-//		System.out.println(root.getListOfFiles());
-//		System.out.println(toBeRestored.getListOfFiles());
-		
-			System.out.println("Borde vara tillbaka " + root.getSubAlbums());
+		//Delete
+		root.deleteSubAlbum(root.getAlbumByName("sub"));
+		assertEquals("[]", root.getSubAlbums().toString());
 
-		//		System.out.println(sub.toString());
-//		care.restoreState(sub);
-		
+		//Restore
+		care.undo(root);
+		assertEquals("[sub]", root.getSubAlbums().toString());
+		assertEquals("[Sången]", root.getSubAlbums().iterator().next().getListOfFiles().toString());
 	}
 
 }

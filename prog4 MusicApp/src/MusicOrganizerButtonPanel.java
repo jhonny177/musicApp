@@ -148,7 +148,7 @@ public class MusicOrganizerButtonPanel extends JPanel {
 		redoButton.setToolTipText("redo last undo");
 		redoButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// sätt hit redo från kontroller
+				controller.redoChange();
 			}
 		});
 		return redoButton;

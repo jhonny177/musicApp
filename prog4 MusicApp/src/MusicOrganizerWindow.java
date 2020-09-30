@@ -3,6 +3,7 @@ import java.awt.Dimension;
 import java.awt.event.MouseEvent;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.Set;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -93,7 +94,9 @@ public class MusicOrganizerWindow extends JFrame {
 				// if left-double-click @@@changed =2 to ==1
 				if (e.getButton() == MouseEvent.BUTTON1 && e.getClickCount() == 2){
 					Album a = getSelectedAlbum();
-					clipTable.display(a);
+					if (a != null) {
+						clipTable.display(a);
+					}
 				}
 			}
 		});
@@ -155,7 +158,7 @@ public class MusicOrganizerWindow extends JFrame {
 	/**
 	 * Return all the sound clips currently selected in the clip table.
 	 */
-	public List<SoundClip> getSelectedSoundClips(){
+	public Set<SoundClip> getSelectedSoundClips(){
 		return clipTable.getClips(clipTable.getSelectedIndices());
 	}
 	

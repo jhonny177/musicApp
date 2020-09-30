@@ -19,7 +19,7 @@ class ManageFilesTests {
 		alb.createRootAlbum("root");
 		SoundClip s = test.createFile(file);
 		test.addFileToSub(alb.getRootAlbum(), s);
-		assertEquals("hello",alb.getRootAlbum().getListOfFiles().get(0).toString());
+		assertEquals("hello",alb.getRootAlbum().getListOfFiles().iterator().next().toString());
 	}
 	@Test
 	void deleteFiletest() {
