@@ -65,16 +65,20 @@ public class MusicOrganizerController {
 	 */
 	public void deleteAlbum(){
 		Album a = view.getSelectedAlbum();
-		a.getParentAlbum().deleteSubAlbum(a);
-		view.onAlbumRemoved(a);
+		if (a != null) {
+			a.getParentAlbum().deleteSubAlbum(a);
+			view.onAlbumRemoved(a);
+		}
 	}
 	/**
 	 * Adds sound clips to an album
 	 */
 	public void addSoundClips(){
 		Album a = view.getSelectedAlbum();
-		Set<SoundClip> s = view.getSelectedSoundClips();
-		a.addAllSongs(s);
+		if (a != null) {
+			Set<SoundClip> s = view.getSelectedSoundClips();
+			a.addAllSongs(s);
+		}
 	}
 	
 	/**
@@ -82,8 +86,11 @@ public class MusicOrganizerController {
 	 */
 	public void removeSoundClips() {
 		Set<SoundClip> s = view.getSelectedSoundClips();
-		view.getSelectedAlbum().removeAllSongs(s);
-		view.onClipsUpdated();
+		Album a = view.getSelectedAlbum();
+		if (s != null && a != null) {
+			a.removeAllSongs(s);
+			view.onClipsUpdated();
+		}
 	}
 	
 	/**

@@ -94,7 +94,9 @@ public class MusicOrganizerWindow extends JFrame {
 				// if left-double-click @@@changed =2 to ==1
 				if (e.getButton() == MouseEvent.BUTTON1 && e.getClickCount() == 2){
 					Album a = getSelectedAlbum();
-					clipTable.display(a);
+					if (a != null) {
+						clipTable.display(a);
+					}
 				}
 			}
 		});

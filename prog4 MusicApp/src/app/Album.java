@@ -37,11 +37,9 @@ public class Album {
 	}
 	
 	
-	//Lägger till en låt till albumet och alla föräldra album får låten satt i sig
+	//Lägger till en låt till albumet och alla föräldraalbum får låten satt i sig
 	public void addSong(SoundClip s) {
-//		if (!listOfFiles.contains(s)) {
 		listOfFiles.add(s);
-//		}
 		if(getParentAlbum()!=null) {
 			getParentAlbum().addSong(s);
 		}
