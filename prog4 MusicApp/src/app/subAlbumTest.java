@@ -92,7 +92,7 @@ class subAlbumTest {
 //		Album toBeRestored = new Album("toBeRestored");
 //		System.out.println("Fortfarande tom " + root.getSubAlbums());
 		
-			care.restoreState(root);
+			care.undo(root);
 		
 //		System.out.println("Är nu restored men inte insatt " + root.getSubAlbums());
 //		root.addSubAlbum(toBeRestored);
