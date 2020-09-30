@@ -133,10 +133,22 @@ public class MusicOrganizerController {
 	 * undo last change in application
 	 */
 	public void undoChange() {
-		care.undo(album);
-		Album a = view.getSelectedAlbum();
-		a = album;
-		view.onAlbumRemoved(a);
+		Album a = care.undo(album);
+		try {
+			view.onAlbumRemoved(a);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		try {
+			view.onAlbumAdded(a);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		try {
+			view.onClipsUpdated();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 	/**
 	 * redo last undo change in application
