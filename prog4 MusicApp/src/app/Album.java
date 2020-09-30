@@ -149,7 +149,6 @@ public class Album {
 		parentAlbum = memento.mementoParentAlbum;
 		listOfFiles = memento.mementoListOfFiles;
 		subAlbums = memento.mementoSubAlbums;
-//		getParentAlbum().addSubAlbum(this);
 	}
 	
 	private class Memento {
