@@ -135,7 +135,15 @@ public class Album {
 	//sparar objectet som det är 
 	public Memento save() {
 		System.out.println("Subalbum som sparas : " + subAlbums);
-		return new Memento(albumName,parentAlbum,listOfFiles,subAlbums);
+
+		String mementoAlbumName = this.toString();
+		Album mementoParentAlbum = this.getParentAlbum();
+		List<SoundClip> mementoListOfFiles = new LinkedList<SoundClip>();
+		mementoListOfFiles.addAll(listOfFiles);
+		Set<Album> mementoSubAlbums = new HashSet<Album>();
+		mementoSubAlbums.addAll(subAlbums);
+		
+		return new Memento(mementoAlbumName,mementoParentAlbum,mementoListOfFiles,mementoSubAlbums);
 	}
 	//återsteller senaste ändringen
 	public void restoreObj(Object al) {
