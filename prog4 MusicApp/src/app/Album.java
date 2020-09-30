@@ -1,7 +1,6 @@
 package app;
 
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -10,13 +9,13 @@ public class Album {
 	
 	private String albumName;
 	private Album parentAlbum;
-	private List<SoundClip> listOfFiles;
+	private Set<SoundClip> listOfFiles;
 	private Set<Album> subAlbums;
 	
 	//constructor
 	public Album(String name) {
 		subAlbums = new HashSet<Album>();
-		listOfFiles = new LinkedList<SoundClip>();
+		listOfFiles = new HashSet<SoundClip>();
 		this.albumName = name;
 	}
 	
@@ -40,15 +39,15 @@ public class Album {
 	
 	//Lägger till en låt till albumet och alla föräldra album får låten satt i sig
 	public void addSong(SoundClip s) {
-		if (!listOfFiles.contains(s)) {
-			listOfFiles.add(s);
-		}
+//		if (!listOfFiles.contains(s)) {
+		listOfFiles.add(s);
+//		}
 		if(getParentAlbum()!=null) {
 			getParentAlbum().addSong(s);
 		}
 	}
 	
-	public void addAllSongs(List<SoundClip> s) {
+	public void addAllSongs(Set<SoundClip> s) {
 		for (SoundClip o: s) {
 			addSong(o);
 		}
@@ -114,7 +113,7 @@ public class Album {
 	}
 	
 	//returnerar en lista med alla låtar i albumet
-	public List<SoundClip> getListOfFiles(){
+	public Set<SoundClip> getListOfFiles(){
 		return listOfFiles;
 	}
 
@@ -126,7 +125,7 @@ public class Album {
 		}
 	}
 	//tar bort alla songer i allbumet
-	public void removeAllSongs(List<SoundClip> s) {
+	public void removeAllSongs(Set<SoundClip> s) {
 		for (SoundClip o: s) {
 			removeSong(o);
 		}
@@ -134,11 +133,9 @@ public class Album {
 		
 	//sparar objectet som det är 
 	public Memento save() {
-		System.out.println("Subalbum som sparas : " + subAlbums);
-
 		String mementoAlbumName = this.toString();
 		Album mementoParentAlbum = this.getParentAlbum();
-		List<SoundClip> mementoListOfFiles = new LinkedList<SoundClip>();
+		Set<SoundClip> mementoListOfFiles = new HashSet<SoundClip>();
 		mementoListOfFiles.addAll(listOfFiles);
 		Set<Album> mementoSubAlbums = new HashSet<Album>();
 		mementoSubAlbums.addAll(subAlbums);
@@ -147,13 +144,11 @@ public class Album {
 	}
 	//återsteller senaste ändringen
 	public void restoreObj(Object al) {
-		System.out.println("Before "+ albumName + parentAlbum + listOfFiles + subAlbums);
 		Memento memento = (Memento) al;
 		albumName = memento.mementoAlbumName;
 		parentAlbum = memento.mementoParentAlbum;
 		listOfFiles = memento.mementoListOfFiles;
 		subAlbums = memento.mementoSubAlbums;
-		System.out.println("After " + albumName + parentAlbum + listOfFiles + subAlbums);
 //		getParentAlbum().addSubAlbum(this);
 	}
 	
@@ -161,15 +156,14 @@ public class Album {
 		
 		private String mementoAlbumName;
 		private Album mementoParentAlbum;
-		private List<SoundClip> mementoListOfFiles;
+		private Set<SoundClip> mementoListOfFiles;
 		private Set<Album> mementoSubAlbums;
 	
-		public Memento(String albumName, Album parentAlbum,List<SoundClip> listOfSoundFiles,Set<Album> subAlbums ) {
+		public Memento(String albumName, Album parentAlbum,Set<SoundClip> listOfSoundFiles,Set<Album> subAlbums ) {
 			this.mementoAlbumName = albumName;
 			this.mementoParentAlbum = parentAlbum;
 			this.mementoListOfFiles = listOfSoundFiles;
 			this.mementoSubAlbums = subAlbums;
-			System.out.println("Finns i mementos mementoSubAlbums: " + mementoSubAlbums);
 		}
 		
 	

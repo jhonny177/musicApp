@@ -3,6 +3,7 @@ import java.awt.Dimension;
 import java.awt.event.MouseEvent;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.Set;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -155,7 +156,7 @@ public class MusicOrganizerWindow extends JFrame {
 	/**
 	 * Return all the sound clips currently selected in the clip table.
 	 */
-	public List<SoundClip> getSelectedSoundClips(){
+	public Set<SoundClip> getSelectedSoundClips(){
 		return clipTable.getClips(clipTable.getSelectedIndices());
 	}
 	

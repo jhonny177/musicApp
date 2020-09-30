@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -55,8 +56,8 @@ public class SoundClipTable extends JList {
 	 * @param indices of selected clips
 	 * @return List of SoundClips at the indices
 	 */
-	public List<SoundClip> getClips(int[] indices){
-		List<SoundClip> l = new ArrayList<SoundClip>();
+	public Set<SoundClip> getClips(int[] indices){
+		Set<SoundClip> l = new HashSet<SoundClip>();
 		for(int i=0;i<indices.length;i++){
 			l.add(clips.get(indices[i]));
 		}

@@ -10,7 +10,6 @@ public class MusicOrganizerController {
 	private MusicOrganizerWindow view;
 	private SoundClipBlockingQueue queue;
 	private Album root;
-	private Album album;
 	
 	
 	public MusicOrganizerController() {
@@ -34,9 +33,10 @@ public class MusicOrganizerController {
 	 */
 	public Set<SoundClip> loadSoundClips(String path) {
 		Set<SoundClip> clips = SoundClipLoader.loadSoundClips(path);
-		for(SoundClip s:clips) {
-		root.addSong(s);	
-		}
+//		for(SoundClip s:clips) {
+//		root.addSong(s);	
+//		}
+		root.addAllSongs(clips);
 		return clips;
 	}
 	
@@ -52,9 +52,10 @@ public class MusicOrganizerController {
 	 */
 	public void addNewAlbum(){ 
 		String name = view.promptForAlbumName();
-		if (name != null) {
+		Album al = view.getSelectedAlbum();
+		if (name != null && al != null) {
 			Album a = new Album(name);
-			view.getSelectedAlbum().addSubAlbum(a);
+			al.addSubAlbum(a);
 			view.onAlbumAdded(a);
 		}
 	}
@@ -72,7 +73,7 @@ public class MusicOrganizerController {
 	 */
 	public void addSoundClips(){
 		Album a = view.getSelectedAlbum();
-		List<SoundClip> s = view.getSelectedSoundClips();
+		Set<SoundClip> s = view.getSelectedSoundClips();
 		a.addAllSongs(s);
 	}
 	
@@ -80,7 +81,7 @@ public class MusicOrganizerController {
 	 * Removes sound clips from an album
 	 */
 	public void removeSoundClips() {
-		List<SoundClip> s = view.getSelectedSoundClips();
+		Set<SoundClip> s = view.getSelectedSoundClips();
 		view.getSelectedAlbum().removeAllSongs(s);
 		view.onClipsUpdated();
 	}
@@ -91,10 +92,12 @@ public class MusicOrganizerController {
 	 * this method is called, the selected sound clips in the 
 	 * SoundClipTable are played.
 	 */
-	public void playSoundClips(){
-		List<SoundClip> l = view.getSelectedSoundClips();
-		for(int i=0;i<l.size();i++)
-			queue.enqueue(l.get(i));
+	public void playSoundClips() {
+		Set<SoundClip> l = view.getSelectedSoundClips();
+		while (l.iterator().hasNext()) {
+			queue.enqueue(l.iterator().next());
+			l.iterator().remove();
+		}
 	}
 	/**
 	 * undo last change in application
@@ -105,7 +108,7 @@ public class MusicOrganizerController {
 	/**
 	 * redo last undo change in application
 	 */
-	public void redo() {
+	public void redoChange() {
 		
 	}
 }
