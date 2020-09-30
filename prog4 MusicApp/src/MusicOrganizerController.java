@@ -2,6 +2,7 @@ import java.util.List;
 import java.util.Set;
 
 import app.Album;
+import app.AlbumCaretaker;
 import app.ManageAlbum;
 import app.SoundClip;
 
@@ -11,6 +12,7 @@ public class MusicOrganizerController {
 	private SoundClipBlockingQueue queue;
 	private Album root;
 	private Album album;
+	private AlbumCaretaker care;
 	
 	
 	public MusicOrganizerController() {
@@ -26,6 +28,8 @@ public class MusicOrganizerController {
 		
 		// Create a separate thread for the sound clip player and start it
 		(new Thread(new SoundClipPlayer(queue))).start();
+		
+		care = new AlbumCaretaker();
 	}
 
 	/**
@@ -54,6 +58,8 @@ public class MusicOrganizerController {
 		String name = view.promptForAlbumName();
 		if (name != null) {
 			Album a = new Album(name);
+			album = a;
+			care.saveState(album);
 			view.getSelectedAlbum().addSubAlbum(a);
 			view.onAlbumAdded(a);
 		}
@@ -64,6 +70,8 @@ public class MusicOrganizerController {
 	 */
 	public void deleteAlbum(){
 		Album a = view.getSelectedAlbum();
+		album = a;
+		care.saveState(album);
 		a.getParentAlbum().deleteSubAlbum(a);
 		view.onAlbumRemoved(a);
 	}
@@ -72,6 +80,8 @@ public class MusicOrganizerController {
 	 */
 	public void addSoundClips(){
 		Album a = view.getSelectedAlbum();
+		album = a;
+		care.saveState(album);
 		List<SoundClip> s = view.getSelectedSoundClips();
 		a.addAllSongs(s);
 	}
@@ -81,6 +91,8 @@ public class MusicOrganizerController {
 	 */
 	public void removeSoundClips() {
 		List<SoundClip> s = view.getSelectedSoundClips();
+		album = view.getSelectedAlbum();
+		care.saveState(album);
 		view.getSelectedAlbum().removeAllSongs(s);
 		view.onClipsUpdated();
 	}
@@ -100,7 +112,10 @@ public class MusicOrganizerController {
 	 * undo last change in application
 	 */
 	public void undoChange() {
-		
+		care.restoreState(album);
+		Album a = view.getSelectedAlbum();
+		a = album;
+		view.onAlbumRemoved(a);
 	}
 	/**
 	 * redo last undo change in application
