@@ -1,7 +1,8 @@
+package controller;
 import java.util.LinkedList;
 import java.util.List;
 
-import app.SoundClip;
+import model.SoundClip;
 
 public class SoundClipBlockingQueue {
 

@@ -1,11 +1,14 @@
+package controller;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import app.Album;
-import app.AlbumCaretaker;
-import app.ManageAlbum;
-import app.SoundClip;
+import model.Album;
+import model.AlbumCaretaker;
+import model.MusicOrganizerButtonPanel;
+import model.SoundClip;
+import model.SoundClipLoader;
+import view.MusicOrganizerWindow;
 
 public class MusicOrganizerController {
 

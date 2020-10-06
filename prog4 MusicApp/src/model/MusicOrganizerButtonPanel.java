@@ -1,3 +1,4 @@
+package model;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,7 +8,8 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
 
-import app.AlbumCaretaker;
+import controller.MusicOrganizerController;
+import view.MusicOrganizerWindow;
 
 public class MusicOrganizerButtonPanel extends JPanel {
 

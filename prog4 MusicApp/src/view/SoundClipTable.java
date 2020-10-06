@@ -1,3 +1,4 @@
+package view;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -6,8 +7,8 @@ import java.util.Set;
 
 import javax.swing.JList;
 
-import app.Album;
-import app.SoundClip;
+import model.Album;
+import model.SoundClip;
 
 public class SoundClipTable extends JList {
 
