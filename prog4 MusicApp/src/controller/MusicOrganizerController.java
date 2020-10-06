@@ -46,9 +46,6 @@ public class MusicOrganizerController {
 	 */
 	public Set<SoundClip> loadSoundClips(String path) {
 		Set<SoundClip> clips = SoundClipLoader.loadSoundClips(path);
-//		for(SoundClip s:clips) {
-//		root.addSong(s);	
-//		}
 		root.addAllSongs(clips);
 		return clips;
 	}
@@ -140,20 +137,13 @@ public class MusicOrganizerController {
 			try {
 				view.onClipsUpdated();
 			} catch (Exception e) {
-				// TODO: handle exception
-				System.out.println("funka int " + e);
 			}
 		} else {
 			try {
 				view.onAlbumRemoved(a);
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
-			try {
 				view.onAlbumAdded(a);
 				a.listSubAlbums().forEach(T -> view.onAlbumAdded(T));
 			} catch (Exception e) {
-				// TODO: handle exception
 			}
 		}
 	}
@@ -166,20 +156,13 @@ public class MusicOrganizerController {
 			try {
 				view.onClipsUpdated();
 			} catch (Exception e) {
-				// TODO: handle exception
-				System.out.println("funka int " + e);
 			}
 		} else {
 			try {
 				view.onAlbumRemoved(a);
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
-			try {
 				view.onAlbumAdded(a);
 				a.listSubAlbums().forEach(T -> view.onAlbumAdded(T));
 			} catch (Exception e) {
-				// TODO: handle exception
 			}
 		}
 
