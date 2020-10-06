@@ -10,6 +10,8 @@ public class AlbumCaretaker {
 	private Stack<Album> undoAlbums = new Stack<Album>();
 	private Stack<Object> redoStack = new Stack<Object>();
 	private Stack<Album> redoAlbums = new Stack<Album>();
+	
+	
 	//sparar objectet och pushar det på en stack som aldrig blir större än size 10
 	public void saveUndoState(Album album) {
 		saveObj = album.save();
@@ -22,6 +24,7 @@ public class AlbumCaretaker {
 		}
 	}
 
+	//Sparar albumets tillstånd då man trycker på undo till redoStacken för att kunna göras om
 	private void saveRedoState(Album album) {
 		saveObj = album.save();
 		redoStack.push(saveObj);
@@ -42,6 +45,7 @@ public class AlbumCaretaker {
 		return a;
 	}
 	
+	//Gör om senaste undo
 	public Album redo() {
 		Album a = redoAlbums.pop();
 		saveUndoState(a);
