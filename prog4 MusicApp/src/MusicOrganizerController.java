@@ -14,6 +14,7 @@ public class MusicOrganizerController {
 	private Album root;
 	private Album album;
 	private AlbumCaretaker care;
+	private MusicOrganizerButtonPanel buttonPanel;
 
 	
 	
@@ -32,6 +33,8 @@ public class MusicOrganizerController {
 		(new Thread(new SoundClipPlayer(queue))).start();
 		
 		care = new AlbumCaretaker();
+		
+		buttonPanel = new MusicOrganizerButtonPanel(this,view);
 	}
 
 	/**
@@ -179,4 +182,9 @@ public class MusicOrganizerController {
 
 
 	}
+	public AlbumCaretaker getCare() {
+		return care;
+	}
+	
+	
 }

@@ -53,4 +53,20 @@ public class AlbumCaretaker {
 		System.out.println("RedoStacksize: " + redoAlbums.size());
 		return a;
 	}
+	public boolean isUndoEmpty() {
+		if(undoStack.size()==0) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	public boolean isRedoEmpty() {
+		if(redoStack.size()==0) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 }
