@@ -133,6 +133,12 @@ public class MusicOrganizerController {
 	 */
 	public void undoChange() {
 		Album a = care.undo();
+		try {
+			view.onAlbumAdded(a);
+			a.listSubAlbums().forEach(T -> view.onAlbumAdded(T));
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		if (a.equals(view.getSelectedAlbum())) {
 			try {
 				view.onClipsUpdated();
@@ -141,24 +147,27 @@ public class MusicOrganizerController {
 				System.out.println("funka int " + e);
 			}
 		} else {
+
+
 			try {
 				view.onAlbumRemoved(a);
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
-			try {
-				view.onAlbumAdded(a);
-				a.listSubAlbums().forEach(T -> view.onAlbumAdded(T));
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
 		}
+
 	}
 	/**
 	 * redo last undo change in application
 	 */
 	public void redoChange() {
 		Album a = care.redo();
+		try {
+			view.onAlbumAdded(a);
+			a.listSubAlbums().forEach(T -> view.onAlbumAdded(T));
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		if (a.equals(view.getSelectedAlbum())) {
 			try {
 				view.onClipsUpdated();
@@ -167,18 +176,14 @@ public class MusicOrganizerController {
 				System.out.println("funka int " + e);
 			}
 		} else {
+
 			try {
 				view.onAlbumRemoved(a);
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
-			try {
-				view.onAlbumAdded(a);
-				a.listSubAlbums().forEach(T -> view.onAlbumAdded(T));
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
 		}
+
 
 
 	}
