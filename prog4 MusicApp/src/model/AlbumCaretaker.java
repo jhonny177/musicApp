@@ -39,7 +39,6 @@ public class AlbumCaretaker {
 		Album a = undoAlbums.pop();
 		saveRedoState(a);
 		a.restoreObj(undoStack.pop());
-		System.out.println("Stacksize: " + undoAlbums.size());
 		return a;
 	}
 	
