@@ -174,4 +174,9 @@ public class MusicOrganizerController {
 			System.out.println("funka int " + e);
 		}
 	}
+	public AlbumCaretaker getCare() {
+		return care;
+	}
+	
+	
 }

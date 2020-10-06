@@ -7,6 +7,8 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
 
+import app.AlbumCaretaker;
+
 public class MusicOrganizerButtonPanel extends JPanel {
 
 	private MusicOrganizerController controller;
@@ -19,7 +21,7 @@ public class MusicOrganizerButtonPanel extends JPanel {
 	private JButton playButton;
 	private JButton undoButton;
 	private JButton redoButton;
-
+	
 	
 	public MusicOrganizerButtonPanel(MusicOrganizerController contr, MusicOrganizerWindow view){
 		super(new BorderLayout());
@@ -76,6 +78,7 @@ public class MusicOrganizerButtonPanel extends JPanel {
 		newAlbumButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.addNewAlbum();
+				setEnableUndo(true);
 			}
 		});
 		return newAlbumButton;
@@ -100,7 +103,7 @@ public class MusicOrganizerButtonPanel extends JPanel {
 		addSoundClipButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {	
 				controller.addSoundClips();
-
+				setEnableUndo(true);
 			}
 		});
 		return addSoundClipButton;
@@ -138,6 +141,10 @@ public class MusicOrganizerButtonPanel extends JPanel {
 		undoButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.undoChange();
+				setEnableRedo(true);
+				if(controller.getCare().isUndoEmpty()==true) {
+					setEnableUndo(false);
+				}
 			}
 		});
 		return undoButton;
@@ -147,12 +154,24 @@ public class MusicOrganizerButtonPanel extends JPanel {
 		ImageIcon redoIcon = new ImageIcon("icons/Actions-blue-arrow-redo-icon.png");
 		JButton redoButton = new JButton(redoIcon);
 		redoButton.setToolTipText("redo last undo");
+		redoButton.setEnabled(false);
 		redoButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.redoChange();
+				setEnableUndo(true);
+				if(controller.getCare().isRedoEmpty()==true) {
+					setEnableRedo(false);
+				}
 			}
 		});
 		return redoButton;
+	}
+	public void setEnableUndo(boolean b) {
+		undoButton.setEnabled(b);
+		
+	}
+	public void setEnableRedo(boolean b) {
+		redoButton.setEnabled(b);
 	}
 
 }
