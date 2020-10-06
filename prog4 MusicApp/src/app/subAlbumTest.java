@@ -87,7 +87,7 @@ class subAlbumTest {
 		assertEquals("[]", root.getSubAlbums().toString());
 
 		//Restore
-		care.undo(root);
+		care.undo();
 		assertEquals("[sub]", root.getSubAlbums().toString());
 		assertEquals("[Sången]", root.getSubAlbums().iterator().next().getListOfFiles().toString());
 	}
