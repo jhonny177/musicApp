@@ -17,7 +17,6 @@ public class AlbumCaretaker {
 		saveObj = album.save();
 		undoStack.push(saveObj);
 		undoAlbums.push(album);
-		System.out.println("STacksize: " + undoAlbums.size());
 		if(undoStack.size()>capacityCap) {
 			undoStack.remove(capacityCap);
 			undoAlbums.remove(capacityCap);
@@ -29,7 +28,6 @@ public class AlbumCaretaker {
 		saveObj = album.save();
 		redoStack.push(saveObj);
 		redoAlbums.push(album);
-		System.out.println("RedoStackSize: " + redoAlbums.size());
 		if(redoStack.size()>capacityCap) {
 			redoStack.remove(capacityCap);
 			redoAlbums.remove(capacityCap);
@@ -50,7 +48,6 @@ public class AlbumCaretaker {
 		Album a = redoAlbums.pop();
 		saveUndoState(a);
 		a.restoreObj(redoStack.pop());
-		System.out.println("RedoStacksize: " + redoAlbums.size());
 		return a;
 	}
 	public boolean isUndoEmpty() {
