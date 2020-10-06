@@ -79,7 +79,7 @@ class subAlbumTest {
 		AlbumCaretaker care = new AlbumCaretaker();
 
 		//Save
-		care.saveState(root);
+		care.saveUndoState(root);
 		assertEquals("[sub]", root.getSubAlbums().toString());
 		
 		//Delete

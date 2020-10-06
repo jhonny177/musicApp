@@ -64,7 +64,7 @@ public class MusicOrganizerController {
 			if (name != null && al != null) {
 				Album a = new Album(name);
 				album = a;
-				care.saveState(album);
+				care.saveUndoState(album);
 				al.addSubAlbum(a);
 				view.onAlbumAdded(a);
 			}
@@ -80,7 +80,7 @@ public class MusicOrganizerController {
 	public void deleteAlbum(){
 		Album a = view.getSelectedAlbum();
 		if (a != null) {
-			care.saveState(a);
+			care.saveUndoState(a);
 			a.getParentAlbum().deleteSubAlbum(a);
 			view.onAlbumRemoved(a);
 		}
@@ -92,7 +92,7 @@ public class MusicOrganizerController {
 	public void addSoundClips(){
 		Album a = view.getSelectedAlbum();
 		if (a != null) {
-			care.saveState(a);
+			care.saveUndoState(a);
 			Set<SoundClip> s = view.getSelectedSoundClips();
 			a.addAllSongs(s);
 		}
@@ -105,7 +105,7 @@ public class MusicOrganizerController {
 		Set<SoundClip> s = view.getSelectedSoundClips();
 		Album a = view.getSelectedAlbum();
 		if (s != null && a != null) {
-			care.saveState(a);
+			care.saveUndoState(a);
 			a.removeAllSongs(s);
 			view.onClipsUpdated();
 		}
@@ -145,6 +145,7 @@ public class MusicOrganizerController {
 			view.onClipsUpdated();
 		} catch (Exception e) {
 			// TODO: handle exception
+			System.out.println("funka int " + e);
 		}
 	}
 	/**
@@ -167,6 +168,7 @@ public class MusicOrganizerController {
 			view.onClipsUpdated();
 		} catch (Exception e) {
 			// TODO: handle exception
+			System.out.println("funka int " + e);
 		}
 	}
 }
