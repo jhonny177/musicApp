@@ -9,8 +9,9 @@ public class AlbumCaretaker {
 	private Stack<Object> undoStack = new Stack<Object>();
 	private Stack<Album> undoAlbums = new Stack<Album>();
 	private Stack<Object> redoStack = new Stack<Object>();
+	private Stack<Album> redoAlbums = new Stack<Album>();
 	//sparar objectet och pushar det på en stack som aldrig blir större än size 10
-	public void saveState(Album album) {
+	public void saveUndoState(Album album) {
 		saveObj = album.save();
 		undoStack.push(saveObj);
 		undoAlbums.push(album);
@@ -20,15 +21,32 @@ public class AlbumCaretaker {
 			undoAlbums.remove(capacityCap);
 		}
 	}
+
+	private void saveRedoState(Album album) {
+		saveObj = album.save();
+		redoStack.push(saveObj);
+		redoAlbums.push(album);
+		System.out.println("RedoStackSize: " + redoAlbums.size());
+		if(redoStack.size()>capacityCap) {
+			redoStack.remove(capacityCap);
+			redoAlbums.remove(capacityCap);
+		}
+	}
+	
 	//hämtar tillbaka den senaste ändringen som är högst upp på stacken
-	public Album undo(Album album) {
+	public Album undo() {
 		Album a = undoAlbums.pop();
+		saveRedoState(a);
 		a.restoreObj(undoStack.pop());
 		System.out.println("Stacksize: " + undoAlbums.size());
 		return a;
 	}
 	
-	public void redo(Album album) {
-		album.restoreObj(redoStack.pop());
+	public Album redo() {
+		Album a = redoAlbums.pop();
+		saveUndoState(a);
+		a.restoreObj(redoStack.pop());
+		System.out.println("RedoStacksize: " + redoAlbums.size());
+		return a;
 	}
 }

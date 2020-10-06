@@ -1,3 +1,4 @@
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -60,15 +61,20 @@ public class MusicOrganizerController {
 	 * Adds an album to the Music Organizer
 	 */
 	public void addNewAlbum(){ 
-		String name = view.promptForAlbumName();
 		Album al = view.getSelectedAlbum();
-		if (name != null && al != null) {
-			Album a = new Album(name);
-			album = a;
-			care.saveState(album);
-			al.addSubAlbum(a);
-			view.onAlbumAdded(a);
+		if (al != null) {
+			String name = view.promptForAlbumName();
+			if (name != null && al != null) {
+				Album a = new Album(name);
+				album = a;
+				care.saveUndoState(album);
+				al.addSubAlbum(a);
+				view.onAlbumAdded(a);
+			}
+		} else {
+			System.out.println("Please select a parent album for your new subalbum");
 		}
+		
 	}
 	
 	/**
@@ -76,11 +82,8 @@ public class MusicOrganizerController {
 	 */
 	public void deleteAlbum(){
 		Album a = view.getSelectedAlbum();
-		album = a;
-		care.saveState(album);
-		a.getParentAlbum().deleteSubAlbum(a);
-		view.onAlbumRemoved(a);
 		if (a != null) {
+			care.saveUndoState(a);
 			a.getParentAlbum().deleteSubAlbum(a);
 			view.onAlbumRemoved(a);
 		}
@@ -91,11 +94,9 @@ public class MusicOrganizerController {
 	 */
 	public void addSoundClips(){
 		Album a = view.getSelectedAlbum();
-		album = a;
-		care.saveState(album);
-		Set<SoundClip> s = view.getSelectedSoundClips();
-		a.addAllSongs(s);
 		if (a != null) {
+			care.saveUndoState(a);
+			Set<SoundClip> s = view.getSelectedSoundClips();
 			a.addAllSongs(s);
 		}
 	}
@@ -105,12 +106,9 @@ public class MusicOrganizerController {
 	 */
 	public void removeSoundClips() {
 		Set<SoundClip> s = view.getSelectedSoundClips();
-		album = view.getSelectedAlbum();
-		care.saveState(album);
-		view.getSelectedAlbum().removeAllSongs(s);
-		view.onClipsUpdated();
 		Album a = view.getSelectedAlbum();
 		if (s != null && a != null) {
+			care.saveUndoState(a);
 			a.removeAllSongs(s);
 			view.onClipsUpdated();
 		}
@@ -123,17 +121,18 @@ public class MusicOrganizerController {
 	 * SoundClipTable are played.
 	 */
 	public void playSoundClips() {
-		Set<SoundClip> l = view.getSelectedSoundClips();
-		while (l.iterator().hasNext()) {
-			queue.enqueue(l.iterator().next());
-			l.iterator().remove();
+		Iterator<SoundClip> i = view.getSelectedSoundClips().iterator();
+		while (i.hasNext()) {
+			SoundClip s = i.next();
+			i.remove();
+			queue.enqueue(s);
 		}
 	}
 	/**
 	 * undo last change in application
 	 */
 	public void undoChange() {
-		Album a = care.undo(album);
+		Album a = care.undo();
 		try {
 			view.onAlbumRemoved(a);
 		} catch (Exception e) {
@@ -141,6 +140,7 @@ public class MusicOrganizerController {
 		}
 		try {
 			view.onAlbumAdded(a);
+			a.listSubAlbums().forEach(T -> view.onAlbumAdded(T));
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -148,12 +148,30 @@ public class MusicOrganizerController {
 			view.onClipsUpdated();
 		} catch (Exception e) {
 			// TODO: handle exception
+			System.out.println("funka int " + e);
 		}
 	}
 	/**
 	 * redo last undo change in application
 	 */
 	public void redoChange() {
-		
+		Album a = care.redo();
+		try {
+			view.onAlbumRemoved(a);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		try {
+			view.onAlbumAdded(a);
+			a.listSubAlbums().forEach(T -> view.onAlbumAdded(T));
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		try {
+			view.onClipsUpdated();
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("funka int " + e);
+		}
 	}
 }
