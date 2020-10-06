@@ -1,5 +1,7 @@
 import javax.swing.SwingUtilities;
 
+import controller.MusicOrganizerController;
+
 public class MainApplication {
 
 	/**

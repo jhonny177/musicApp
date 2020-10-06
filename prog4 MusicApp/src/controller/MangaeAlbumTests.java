@@ -1,4 +1,4 @@
-package app;
+package controller;
 
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
+
+import model.Album;
 
 class MangaeAlbumTests {
 

@@ -1,4 +1,6 @@
-package app;
+package controller;
+
+import model.Album;
 
 public class ManageAlbum{
 	

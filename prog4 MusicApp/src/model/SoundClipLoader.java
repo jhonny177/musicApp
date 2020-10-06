@@ -1,11 +1,10 @@
+package model;
 
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FilenameFilter;
 import java.util.HashSet;
 import java.util.Set;
-
-import app.SoundClip;
 
 /**
  * SoundClipLoader finds sound clip files on disk.

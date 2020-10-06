@@ -1,6 +1,9 @@
-package app;
+package controller;
 import java.io.File;
 import java.util.Set;
+
+import model.Album;
+import model.SoundClip;
 
 public class ManageFiles {
 	

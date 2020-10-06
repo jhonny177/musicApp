@@ -1,4 +1,4 @@
-package app;
+package controller;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -6,6 +6,8 @@ import java.io.File;
 import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
+
+import model.SoundClip;
 
 class ManageFilesTests {
 	
