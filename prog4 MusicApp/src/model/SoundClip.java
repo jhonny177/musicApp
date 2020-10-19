@@ -8,6 +8,8 @@ import java.io.File;
 public class SoundClip {
 
 	private final File file;
+	private boolean flagged = false;
+	private Integer score;
 	
 	/**
 	 * Make a SoundClip from a file.
@@ -18,6 +20,22 @@ public class SoundClip {
 		this.file = file;
 	}
 
+	public void setFlagged(boolean s) {
+		flagged = s;
+	}
+	
+	public boolean getFlagged() {
+		return flagged;
+	}
+	
+	public void setScore(int s) {
+		assert(s <= 5 && s >= 0);
+		score = s;
+	}
+	
+	public int getScore() {
+		return score;
+	}
 	/**
 	 * @return the file containing this sound clip.
 	 */
@@ -26,7 +44,7 @@ public class SoundClip {
 	}
 	
 	public String toString(){
-		return file.getName();
+		return file.getName() + ((flagged = true)? "Flagga" : "") + ((score != null)? score : "");
 	}
 	
 	@Override
