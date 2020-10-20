@@ -182,7 +182,6 @@ public class MusicOrganizerButtonPanel extends JPanel {
 		flagButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.flagClip();
-				setEnableUndo(true);
 			};
 		});
 		return flagButton;

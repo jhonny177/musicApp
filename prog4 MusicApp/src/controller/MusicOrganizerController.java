@@ -198,10 +198,8 @@ public class MusicOrganizerController {
 		try {
 		
 		Iterator<SoundClip> i = view.getSelectedSoundClips().iterator();
-		RegularAlbum a = (RegularAlbum) view.getSelectedAlbum();
 		while(i.hasNext()) {
 			SoundClip s = i.next();
-			care.saveUndoState(a);
 			if(s.getFlagged()==false) {
 				s.setFlagged(true);
 				flagAlbum.addSong(s);
@@ -222,7 +220,7 @@ public class MusicOrganizerController {
 	public void favouriteClip() {
 		try {
 			Integer[] options = {1, 2, 3, 4, 5};
-	        int score = (Integer)JOptionPane.showInputDialog(null, "Give scor to clip:",
+	        int score = (Integer)JOptionPane.showInputDialog(null, "Give score to clip:",
 	                "Numbers", JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 	        Iterator<SoundClip> i = view.getSelectedSoundClips().iterator();
 			while(i.hasNext()) {

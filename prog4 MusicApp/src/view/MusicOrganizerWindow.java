@@ -38,7 +38,7 @@ public class MusicOrganizerWindow extends JFrame {
 	private static int DEFAULT_WINDOW_HEIGHT = 600;
 
 	
-
+	
 	private final JTree albumTree;
 	private final SoundClipTable clipTable;
 	private MusicOrganizerButtonPanel buttonPanel;
