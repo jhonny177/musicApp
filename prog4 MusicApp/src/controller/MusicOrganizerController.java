@@ -193,9 +193,11 @@ public class MusicOrganizerController {
 			SoundClip s = i.next();
 			if(s.getFlagged()==false) {
 				s.setFlagged(true);
+				flagAlbum.addSong(s);
 			}
 			else if(s.getFlagged()==true) {
 				s.setFlagged(false);
+				flagAlbum.removeSong(s);
 			}
 		}
 		view.onClipsUpdated();

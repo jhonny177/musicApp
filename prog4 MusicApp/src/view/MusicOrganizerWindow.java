@@ -255,7 +255,7 @@ public class MusicOrganizerWindow extends JFrame {
 	 * 
 	 */
 	public void onClipsUpdated(){
-		RegularAlbum a = (RegularAlbum) getSelectedTreeNode().getUserObject();
+		Album a = (Album) getSelectedTreeNode().getUserObject();
 		clipTable.display(a);
 	}
 }

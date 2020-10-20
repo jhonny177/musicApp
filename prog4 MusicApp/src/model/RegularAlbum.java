@@ -36,6 +36,7 @@ public class RegularAlbum extends Album {
 	
 	
 	//Lägger till en låt till albumet och alla föräldraalbum får låten satt i sig
+	@Override
 	public void addSong(SoundClip s) {
 		listOfFiles.add(s);
 		if(getParentAlbum()!=null) {
@@ -105,6 +106,7 @@ public class RegularAlbum extends Album {
 	}
 
 	//Tar bort en låt från albumet
+	@Override
 	public void removeSong(SoundClip s) {
 		listOfFiles.remove(s);
 		for (RegularAlbum a:subAlbums) {

@@ -26,4 +26,8 @@ public abstract class Album {
 	public Set<SoundClip> getListOfFiles(){
 		return listOfFiles;
 	}
+
+	public abstract void addSong(SoundClip s);
+
+	public abstract void removeSong(SoundClip s);
 }

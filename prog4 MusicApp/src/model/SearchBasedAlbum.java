@@ -18,4 +18,14 @@ public class SearchBasedAlbum extends Album {
 		return root;
 	}
 
+	@Override
+	public void addSong(SoundClip s) {
+		listOfFiles.add(s);
+	}
+
+	@Override
+	public void removeSong(SoundClip s) {
+		listOfFiles.remove(s);
+	}
+
 }
