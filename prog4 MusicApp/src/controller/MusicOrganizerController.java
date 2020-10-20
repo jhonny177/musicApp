@@ -1,12 +1,9 @@
 package controller;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 
 
 import javax.swing.JOptionPane;
-
-import model.Album;
 
 import model.RegularAlbum;
 import model.SearchBasedAlbum;
@@ -26,7 +23,6 @@ public class MusicOrganizerController {
 	private SearchBasedAlbum flagAlbum;
 	private SearchBasedAlbum greatAlbum;
 	private AlbumCaretaker care;
-	private MusicOrganizerButtonPanel buttonPanel;
 
 	
 	
@@ -47,8 +43,6 @@ public class MusicOrganizerController {
 		(new Thread(new SoundClipPlayer(queue))).start();
 		
 		care = new AlbumCaretaker();
-		
-		buttonPanel = new MusicOrganizerButtonPanel(this,view);
 	}
 
 	/**

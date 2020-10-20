@@ -1,6 +1,5 @@
 package controller;
 import java.io.File;
-import java.util.Set;
 
 import model.RegularAlbum;
 import model.SoundClip;
