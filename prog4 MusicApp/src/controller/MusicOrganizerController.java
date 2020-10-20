@@ -196,7 +196,6 @@ public class MusicOrganizerController {
 	public void flagClip() {
 
 		try {
-		
 		Iterator<SoundClip> i = view.getSelectedSoundClips().iterator();
 		while(i.hasNext()) {
 			SoundClip s = i.next();
@@ -209,7 +208,6 @@ public class MusicOrganizerController {
 				s.setFlagged(false);
 				flagAlbum.removeSong(s);
 			}
-
 		}
 		view.onClipsUpdated();
 		}
@@ -226,6 +224,12 @@ public class MusicOrganizerController {
 			while(i.hasNext()) {
 				SoundClip s = i.next();
 				s.setScore(score);
+				if(s.getScore()>=4) {
+					greatAlbum.addSong(s);
+				}
+				else if(s.getScore()<4) {
+					greatAlbum.removeSong(s);
+				}
 			}
 			view.onClipsUpdated();
 		}
