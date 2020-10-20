@@ -18,7 +18,7 @@ import javax.swing.tree.DefaultTreeSelectionModel;
 import javax.swing.tree.TreePath;
 
 import controller.MusicOrganizerController;
-import model.Album;
+import model.RegularAlbum;
 import model.MusicOrganizerButtonPanel;
 import model.SoundClip;
 
@@ -77,7 +77,7 @@ public class MusicOrganizerWindow extends JFrame {
 		
 
 		DefaultMutableTreeNode tree_root = new DefaultMutableTreeNode();
-		tree_root.setUserObject((Album) controller.getRootAlbum());
+		tree_root.setUserObject((RegularAlbum) controller.getRootAlbum());
 		
 		final JTree tree = new JTree(tree_root);
 		tree.setMinimumSize(new Dimension(200, 400));
@@ -96,7 +96,7 @@ public class MusicOrganizerWindow extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				// if left-double-click @@@changed =2 to ==1
 				if (e.getButton() == MouseEvent.BUTTON1 && e.getClickCount() == 2){
-					Album a = getSelectedAlbum();
+					RegularAlbum a = getSelectedAlbum();
 					if (a != null) {
 						clipTable.display(a);
 					}
@@ -170,10 +170,10 @@ public class MusicOrganizerWindow extends JFrame {
 	 * selection.
 	 * @return the selected album
 	 */
-	public Album getSelectedAlbum() {
+	public RegularAlbum getSelectedAlbum() {
 		DefaultMutableTreeNode node = getSelectedTreeNode();
 		if(node != null) {
-			return (Album) node.getUserObject();
+			return (RegularAlbum) node.getUserObject();
 		} else {
 			return null;
 		}
@@ -194,7 +194,7 @@ public class MusicOrganizerWindow extends JFrame {
 	 * Updates the album hierarchy with a new album
 	 * @param newAlbum
 	 */
-	public void onAlbumAdded(Album newAlbum){
+	public void onAlbumAdded(RegularAlbum newAlbum){
 		
 		assert newAlbum != null;
 		
@@ -205,7 +205,7 @@ public class MusicOrganizerWindow extends JFrame {
 			DefaultMutableTreeNode parent = (DefaultMutableTreeNode) e.nextElement();
 			
 			//Get the parent album of newAlbum
-			Album parentAlbum = newAlbum.getParentAlbum(); 
+			RegularAlbum parentAlbum = newAlbum.getParentAlbum(); 
 			
 			
 			
@@ -225,7 +225,7 @@ public class MusicOrganizerWindow extends JFrame {
 	/**
 	 * Updates the album hierarchy by removing an album from it
 	 */
-	public void onAlbumRemoved(Album album){
+	public void onAlbumRemoved(RegularAlbum album){
 		assert album != null;
 		
 		DefaultTreeModel model = (DefaultTreeModel) albumTree.getModel();
@@ -246,7 +246,7 @@ public class MusicOrganizerWindow extends JFrame {
 	 * 
 	 */
 	public void onClipsUpdated(){
-		Album a = (Album) getSelectedTreeNode().getUserObject();
+		RegularAlbum a = (RegularAlbum) getSelectedTreeNode().getUserObject();
 		clipTable.display(a);
 	}
 }

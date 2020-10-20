@@ -1,28 +1,28 @@
 package controller;
 
-import model.Album;
+import model.RegularAlbum;
 
 public class ManageAlbum{
 	
-	private Album root;
+	private RegularAlbum root;
 	
 	//skapar ett root album
 	public void createRootAlbum(String name) {;
-	 	root = new Album(name);
+	 	root = new RegularAlbum(name);
 	}
 	
 	//skapar ett subalbum åt ett annat album
-	public void createSubAlbum(Album parent, String name) {
-		parent.addSubAlbum(new Album(name));
+	public void createSubAlbum(RegularAlbum parent, String name) {
+		parent.addSubAlbum(new RegularAlbum(name));
 	}
 	
 	//tar bort ett album och dess subalbum
-	public void deleteAlbum(Album a) {
+	public void deleteAlbum(RegularAlbum a) {
 		root.deleteSubAlbum(a);
 	}
 	
 	//Hittar ett album med hjälp av dess namn 
-	public Album getAlbumByName(String name) {
+	public RegularAlbum getAlbumByName(String name) {
 		if (name.equals("root")) {
 			return root;
 		}
@@ -30,7 +30,7 @@ public class ManageAlbum{
 	}
 	
 	//returnerar root albumet
-	public Album getRootAlbum() {
+	public RegularAlbum getRootAlbum() {
 		return root;
 	}
 	

@@ -9,35 +9,35 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import model.Album;
+import model.RegularAlbum;
 import model.AlbumCaretaker;
 import model.SoundClip;
 
 class subAlbumTest {
 
-	private Album test;
-	private Album sub;
-	private Album subSub;
+	private RegularAlbum test;
+	private RegularAlbum sub;
+	private RegularAlbum subSub;
 	
 	@Test
 	void test() {
-		test = new Album("god");
-		sub = new Album("morgon");
-		subSub = new Album("igen");
+		test = new RegularAlbum("god");
+		sub = new RegularAlbum("morgon");
+		subSub = new RegularAlbum("igen");
 		sub.addSubAlbum(subSub);
 		test.addSubAlbum(sub);
 		//testar outputten av subAlbum()
-		Set<Album> output = test.listSubAlbums();
+		Set<RegularAlbum> output = test.listSubAlbums();
 		String outStr = "";
-		for(Album a: output) {
+		for(RegularAlbum a: output) {
 			outStr += a;
 		}
 		//gör settet som det skall se ut
-		Set<Album> isNow = new HashSet<Album>();
+		Set<RegularAlbum> isNow = new HashSet<RegularAlbum>();
 		isNow.add(sub);
 		isNow.add(subSub);
 		String now = "";
-		for(Album b:isNow) {
+		for(RegularAlbum b:isNow) {
 			now += b;
 		}
 		assertEquals(now,outStr);
@@ -45,9 +45,9 @@ class subAlbumTest {
 	
 	@Test
 	void createSubalbums() {
-		Album root = new Album("root");
-		root.addSubAlbum(new Album("subalbum"));
-		root.getSubAlbums().iterator().next().addSubAlbum(new Album("subsubalbum"));
+		RegularAlbum root = new RegularAlbum("root");
+		root.addSubAlbum(new RegularAlbum("subalbum"));
+		root.getSubAlbums().iterator().next().addSubAlbum(new RegularAlbum("subsubalbum"));
 		assertEquals("subsubalbum", root.getSubAlbums().iterator().next().getSubAlbums().iterator().next().toString());
 		assertEquals(root,root.getSubAlbums().iterator().next().getParentAlbum());
 		assertEquals(root.getSubAlbums().iterator().next(),root.getSubAlbums().iterator().next().getSubAlbums().iterator().next().getParentAlbum());
@@ -55,11 +55,11 @@ class subAlbumTest {
 	
 	@Test
 	void removeAlbum() {
-		Album root = new Album("root");
-		root.addSubAlbum(new Album("sub"));
+		RegularAlbum root = new RegularAlbum("root");
+		root.addSubAlbum(new RegularAlbum("sub"));
 		//root should have one sub album
 		assertEquals(1, root.getSubAlbums().size());
-		Album subA = root.getSubAlbums().iterator().next();
+		RegularAlbum subA = root.getSubAlbums().iterator().next();
 		subA.setName("subalbum1");
 		//delete sub album
 		root.deleteSubAlbum(subA);
@@ -69,7 +69,7 @@ class subAlbumTest {
 	
 	@Test
 	void changeName() {
-		Album rootAlbum = new Album("root");
+		RegularAlbum rootAlbum = new RegularAlbum("root");
 		assertEquals("root", rootAlbum.toString());
 		rootAlbum.setName("roten");
 		assertEquals("roten",rootAlbum.toString());
@@ -77,8 +77,8 @@ class subAlbumTest {
 	@Test
 	void save() {
 		
-		Album root = new Album("root");
-		root.addSubAlbum(new Album("sub"));
+		RegularAlbum root = new RegularAlbum("root");
+		root.addSubAlbum(new RegularAlbum("sub"));
 		root.getSubAlbums().iterator().next().addSong(new SoundClip(new File("Sången")));
 		AlbumCaretaker care = new AlbumCaretaker();
 
