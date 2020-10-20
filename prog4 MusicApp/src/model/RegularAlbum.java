@@ -113,7 +113,7 @@ public class RegularAlbum extends Album {
 			a.removeSong(s);
 		}
 	}
-	//tar bort alla songer i allbumet
+	//tar bort alla songer i albumet
 	public void removeAllSongs(Set<SoundClip> s) {
 		for (SoundClip o: s) {
 			removeSong(o);
@@ -121,6 +121,7 @@ public class RegularAlbum extends Album {
 	}
 		
 	//sparar objectet som det är 
+	@Override
 	public Memento save() {
 		String mementoAlbumName = this.toString();
 		RegularAlbum mementoParentAlbum = this.getParentAlbum();
@@ -131,7 +132,8 @@ public class RegularAlbum extends Album {
 		
 		return new Memento(mementoAlbumName,mementoParentAlbum,mementoListOfFiles,mementoSubAlbums);
 	}
-	//återsteller senaste ändringen
+	//återställer senaste ändringen
+	@Override
 	public void restoreObj(Object al) {
 		Memento memento = (Memento) al;
 		albumName = memento.mementoAlbumName;
@@ -140,20 +142,4 @@ public class RegularAlbum extends Album {
 		subAlbums = memento.mementoSubAlbums;
 	}
 	
-	private class Memento {
-		
-		private String mementoAlbumName;
-		private RegularAlbum mementoParentAlbum;
-		private Set<SoundClip> mementoListOfFiles;
-		private Set<RegularAlbum> mementoSubAlbums;
-	
-		public Memento(String albumName, RegularAlbum parentAlbum,Set<SoundClip> listOfSoundFiles,Set<RegularAlbum> subAlbums ) {
-			this.mementoAlbumName = albumName;
-			this.mementoParentAlbum = parentAlbum;
-			this.mementoListOfFiles = listOfSoundFiles;
-			this.mementoSubAlbums = subAlbums;
-		}
-		
-	
-	}
 }

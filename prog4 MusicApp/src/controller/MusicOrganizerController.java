@@ -189,8 +189,10 @@ public class MusicOrganizerController {
 	}
 	public void flagClip() {
 		Iterator<SoundClip> i = view.getSelectedSoundClips().iterator();
+		RegularAlbum a = (RegularAlbum) view.getSelectedAlbum();
 		while(i.hasNext()) {
 			SoundClip s = i.next();
+			care.saveUndoState(a);
 			if(s.getFlagged()==false) {
 				s.setFlagged(true);
 				flagAlbum.addSong(s);

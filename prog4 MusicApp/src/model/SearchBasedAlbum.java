@@ -1,6 +1,8 @@
 package model;
 
 import java.util.HashSet;
+import java.util.Set;
+
 
 public class SearchBasedAlbum extends Album {
 	Album root;
@@ -26,6 +28,21 @@ public class SearchBasedAlbum extends Album {
 	@Override
 	public void removeSong(SoundClip s) {
 		listOfFiles.remove(s);
+	}
+
+	@Override
+	public Memento save() {
+		String mementoAlbumName = this.toString();
+		Set<SoundClip> mementoListOfFiles = new HashSet<SoundClip>();
+		mementoListOfFiles.addAll(listOfFiles);
+		return new Memento(mementoAlbumName,mementoListOfFiles);
+	}
+
+	@Override
+	public void restoreObj(Object al) {
+		Memento memento = (Memento) al;
+		albumName = memento.mementoAlbumName;
+		listOfFiles = memento.mementoListOfFiles;
 	}
 
 }
