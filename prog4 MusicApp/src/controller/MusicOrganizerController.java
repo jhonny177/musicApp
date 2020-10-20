@@ -168,6 +168,12 @@ public class MusicOrganizerController {
 
 
 	}
+	public void flagClip() {
+		
+	}
+	public void favouriteClip() {
+		
+	}
 	public AlbumCaretaker getCare() {
 		return care;
 	}
