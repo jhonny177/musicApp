@@ -3,6 +3,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import javax.swing.JOptionPane;
+
 import model.Album;
 import model.AlbumCaretaker;
 import model.MusicOrganizerButtonPanel;
@@ -169,20 +171,38 @@ public class MusicOrganizerController {
 
 	}
 	public void flagClip() {
-		Iterator<SoundClip> i = view.getSelectedSoundClips().iterator();
-		while(i.hasNext()) {
-			SoundClip s = i.next();
-			if(s.getFlagged()==false) {
-				s.setFlagged(true);
+		try {
+			Iterator<SoundClip> i = view.getSelectedSoundClips().iterator();
+			while(i.hasNext()) {
+				SoundClip s = i.next();
+				if(s.getFlagged()==false) {
+					s.setFlagged(true);
+				}
+				else if(s.getFlagged()==true) {
+					s.setFlagged(false);
+				}
 			}
-			else if(s.getFlagged()==true) {
-				s.setFlagged(false);
-			}
+			view.onClipsUpdated();
 		}
-		view.onClipsUpdated();
+			catch(Exception e) {
+				JOptionPane.showMessageDialog(null, "No clip selected");
+			}
 	}
 	public void favouriteClip() {
-		
+		try {
+			Integer[] options = {1, 2, 3, 4, 5};
+	        int score = (Integer)JOptionPane.showInputDialog(null, "Give scor to clip:",
+	                "Numbers", JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+	        Iterator<SoundClip> i = view.getSelectedSoundClips().iterator();
+			while(i.hasNext()) {
+				SoundClip s = i.next();
+				s.setScore(score);
+			}
+			view.onClipsUpdated();
+		}
+		catch(Exception e) {
+			JOptionPane.showMessageDialog(null, "No clip selected");
+		}
 	}
 	public AlbumCaretaker getCare() {
 		return care;
