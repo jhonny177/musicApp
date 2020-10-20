@@ -7,16 +7,13 @@ import java.util.Set;
 public class RegularAlbum extends Album {
 
 	
-	private String albumName;
 	private RegularAlbum parentAlbum;
-	private Set<SoundClip> listOfFiles;
 	private Set<RegularAlbum> subAlbums;
 	
 	//constructor
 	public RegularAlbum(String name) {
 		super();
 		subAlbums = new HashSet<RegularAlbum>();
-		listOfFiles = new HashSet<SoundClip>();
 		this.albumName = name;
 	}
 	
@@ -56,11 +53,6 @@ public class RegularAlbum extends Album {
 	public boolean songExists(SoundClip s) {
 		return listOfFiles.contains(s);
 	}
-		
-	@Override
-	public String toString() {
-		return albumName;
-	}
 	
 	//Ändrar på albumets namn
 	public void setName(String albumName) {
@@ -71,6 +63,7 @@ public class RegularAlbum extends Album {
 		parentAlbum = parent;
 	}
 	//hämtar förälderalbummet
+	@Override
 	public RegularAlbum getParentAlbum() {
 		return parentAlbum;
 	}
@@ -109,11 +102,6 @@ public class RegularAlbum extends Album {
 			}
 		}
 		return toReturn;
-	}
-	
-	//returnerar en lista med alla låtar i albumet
-	public Set<SoundClip> getListOfFiles(){
-		return listOfFiles;
 	}
 
 	//Tar bort en låt från albumet

@@ -19,6 +19,8 @@ import javax.swing.tree.TreePath;
 
 import controller.MusicOrganizerController;
 import model.RegularAlbum;
+import model.SearchBasedAlbum;
+import model.Album;
 import model.MusicOrganizerButtonPanel;
 import model.SoundClip;
 
@@ -68,6 +70,10 @@ public class MusicOrganizerWindow extends JFrame {
 				
 		this.setVisible(true);
 		
+		// Adds the flag album and great score album to the tree
+		onAlbumAdded(controller.getFlagAlbum());
+		onAlbumAdded(controller.getGreatAlbum());
+		
 	}
 
 	/**
@@ -78,8 +84,11 @@ public class MusicOrganizerWindow extends JFrame {
 
 		DefaultMutableTreeNode tree_root = new DefaultMutableTreeNode();
 		tree_root.setUserObject((RegularAlbum) controller.getRootAlbum());
+//		tree_root.setUserObject((SearchBasedAlbum) controller.getFlagAlbum());
+//		tree_root.setUserObject((SearchBasedAlbum) controller.getGreatAlbum());
 		
 		final JTree tree = new JTree(tree_root);
+//		((DefaultTreeModel) albumTree.getModel()).insertNodeInto(trnode, 1);
 		tree.setMinimumSize(new Dimension(200, 400));
 		
 		tree.setToggleClickCount(3); // so that we can use double-clicks for
@@ -96,7 +105,7 @@ public class MusicOrganizerWindow extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				// if left-double-click @@@changed =2 to ==1
 				if (e.getButton() == MouseEvent.BUTTON1 && e.getClickCount() == 2){
-					RegularAlbum a = getSelectedAlbum();
+					Album a = getSelectedAlbum();
 					if (a != null) {
 						clipTable.display(a);
 					}
@@ -170,10 +179,10 @@ public class MusicOrganizerWindow extends JFrame {
 	 * selection.
 	 * @return the selected album
 	 */
-	public RegularAlbum getSelectedAlbum() {
+	public Album getSelectedAlbum() {
 		DefaultMutableTreeNode node = getSelectedTreeNode();
 		if(node != null) {
-			return (RegularAlbum) node.getUserObject();
+			return (Album) node.getUserObject();
 		} else {
 			return null;
 		}
@@ -194,7 +203,7 @@ public class MusicOrganizerWindow extends JFrame {
 	 * Updates the album hierarchy with a new album
 	 * @param newAlbum
 	 */
-	public void onAlbumAdded(RegularAlbum newAlbum){
+	public void onAlbumAdded(Album newAlbum){
 		
 		assert newAlbum != null;
 		
@@ -205,7 +214,7 @@ public class MusicOrganizerWindow extends JFrame {
 			DefaultMutableTreeNode parent = (DefaultMutableTreeNode) e.nextElement();
 			
 			//Get the parent album of newAlbum
-			RegularAlbum parentAlbum = newAlbum.getParentAlbum(); 
+			Album parentAlbum = newAlbum.getParentAlbum(); 
 			
 			
 			

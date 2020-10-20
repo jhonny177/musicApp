@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import model.RegularAlbum;
+import model.SearchBasedAlbum;
 import model.AlbumCaretaker;
 import model.MusicOrganizerButtonPanel;
 import model.SoundClip;
@@ -16,6 +17,8 @@ public class MusicOrganizerController {
 	private SoundClipBlockingQueue queue;
 	private RegularAlbum root;
 	private RegularAlbum album;
+	private SearchBasedAlbum flagAlbum;
+	private SearchBasedAlbum greatAlbum;
 	private AlbumCaretaker care;
 	private MusicOrganizerButtonPanel buttonPanel;
 
@@ -25,6 +28,8 @@ public class MusicOrganizerController {
 		
 		// Create the root album for all sound clips
 		root = new RegularAlbum("All Sound Clips");
+		flagAlbum = new SearchBasedAlbum("Flagged Sound Clips",root);
+		greatAlbum = new SearchBasedAlbum("Great Sound Clips",root);
 		
 		// Create the View in Model-View-Controller
 		view = new MusicOrganizerWindow(this);
@@ -56,12 +61,26 @@ public class MusicOrganizerController {
 	public RegularAlbum getRootAlbum(){
 		return root;
 	}
+
+	/**
+	 * Returns the flag album
+	 */
+	public SearchBasedAlbum getFlagAlbum(){
+		return flagAlbum;
+	}
+
+	/**
+	 * Returns the great album
+	 */
+	public SearchBasedAlbum getGreatAlbum(){
+		return greatAlbum;
+	}
 	
 	/**
 	 * Adds an album to the Music Organizer
 	 */
 	public void addNewAlbum(){ 
-		RegularAlbum al = view.getSelectedAlbum();
+		RegularAlbum al = (RegularAlbum) view.getSelectedAlbum();
 		if (al != null) {
 			String name = view.promptForAlbumName();
 			if (name != null && al != null) {
@@ -81,7 +100,7 @@ public class MusicOrganizerController {
 	 * Removes an album from the Music Organizer
 	 */
 	public void deleteAlbum(){
-		RegularAlbum a = view.getSelectedAlbum();
+		RegularAlbum a = (RegularAlbum) view.getSelectedAlbum();
 		if (a != null) {
 			care.saveUndoState(a);
 			a.getParentAlbum().deleteSubAlbum(a);
@@ -93,7 +112,7 @@ public class MusicOrganizerController {
 	 * Adds sound clips to an album
 	 */
 	public void addSoundClips(){
-		RegularAlbum a = view.getSelectedAlbum();
+		RegularAlbum a = (RegularAlbum) view.getSelectedAlbum();
 		if (a != null) {
 			care.saveUndoState(a);
 			Set<SoundClip> s = view.getSelectedSoundClips();
@@ -106,7 +125,7 @@ public class MusicOrganizerController {
 	 */
 	public void removeSoundClips() {
 		Set<SoundClip> s = view.getSelectedSoundClips();
-		RegularAlbum a = view.getSelectedAlbum();
+		RegularAlbum a = (RegularAlbum) view.getSelectedAlbum();
 		if (s != null && a != null) {
 			care.saveUndoState(a);
 			a.removeAllSongs(s);

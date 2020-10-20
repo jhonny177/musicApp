@@ -1,11 +1,21 @@
 package model;
 
-public class SearchBasedAlbum extends Album {
+import java.util.HashSet;
 
-	public SearchBasedAlbum(String name) {
+public class SearchBasedAlbum extends Album {
+	Album root;
+
+	//constructor
+	public SearchBasedAlbum(String name, Album root) {
 		super();
+		this.albumName = name;
+		this.root = root;
 		// TODO Auto-generated constructor stub
 	}
 
-	
+	@Override
+	public Album getParentAlbum() {
+		return root;
+	}
+
 }
