@@ -23,6 +23,8 @@ public class MusicOrganizerButtonPanel extends JPanel {
 	private JButton playButton;
 	private JButton undoButton;
 	private JButton redoButton;
+	private JButton flagButton;
+	private JButton favouriteButton;
 	
 	
 	public MusicOrganizerButtonPanel(MusicOrganizerController contr, MusicOrganizerWindow view){
@@ -54,6 +56,12 @@ public class MusicOrganizerButtonPanel extends JPanel {
 		
 		redoButton = createRedoButton();
 		toolbar.add(redoButton); 
+		
+		flagButton = createFlagButton();
+		toolbar.add(flagButton);
+		
+		favouriteButton = createFavouriteButton();
+		toolbar.add(favouriteButton);
 		
 		this.add(toolbar);
 
@@ -167,6 +175,28 @@ public class MusicOrganizerButtonPanel extends JPanel {
 			}
 		});
 		return redoButton;
+	}
+	private JButton createFlagButton() {
+		ImageIcon flagIcon = new ImageIcon("icons/Actions-flag-icon.png");
+		JButton flagButton = new JButton(flagIcon);
+		flagButton.setToolTipText("Flag selected Sound Clip");
+		flagButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controller.flagClip();
+			};
+		});
+		return flagButton;
+	}
+	private JButton createFavouriteButton() {
+		ImageIcon favIcon = new ImageIcon("icons/favourites_32.png");
+		JButton favButton = new JButton(favIcon);
+		favButton.setToolTipText("Give score to selected Sound Clip");
+		favButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controller.favouriteClip();
+			};
+		});
+		return favButton;
 	}
 	public void setEnableUndo(boolean b) {
 		undoButton.setEnabled(b);

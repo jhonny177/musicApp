@@ -44,7 +44,7 @@ public class SoundClip {
 	}
 	
 	public String toString(){
-		return file.getName() + ((flagged = true)? " ⚑" : "") + ((score != null)? " " + score : "");
+		return file.getName() +((flagged == true)? " ⚑" : "") + ((score != null)? " " + score : "");
 	}
 	
 	@Override
