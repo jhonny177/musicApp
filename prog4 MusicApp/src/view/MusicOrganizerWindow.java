@@ -2,9 +2,14 @@ package view;
 
 import java.awt.Dimension;
 
+
+
 import java.awt.event.MouseEvent;
 import java.util.Enumeration;
 import java.util.Set;
+
+
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -30,7 +35,7 @@ public class MusicOrganizerWindow extends JFrame {
 	private static int DEFAULT_WINDOW_HEIGHT = 600;
 
 	
-
+	
 	private final JTree albumTree;
 	private final SoundClipTable clipTable;
 	private MusicOrganizerButtonPanel buttonPanel;

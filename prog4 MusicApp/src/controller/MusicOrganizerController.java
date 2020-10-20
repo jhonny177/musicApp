@@ -1,12 +1,9 @@
 package controller;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 
 
 import javax.swing.JOptionPane;
-
-import model.Album;
 
 import model.RegularAlbum;
 import model.SearchBasedAlbum;
@@ -26,7 +23,6 @@ public class MusicOrganizerController {
 	private SearchBasedAlbum flagAlbum;
 	private SearchBasedAlbum greatAlbum;
 	private AlbumCaretaker care;
-	private MusicOrganizerButtonPanel buttonPanel;
 
 	
 	
@@ -47,8 +43,6 @@ public class MusicOrganizerController {
 		(new Thread(new SoundClipPlayer(queue))).start();
 		
 		care = new AlbumCaretaker();
-		
-		buttonPanel = new MusicOrganizerButtonPanel(this,view);
 	}
 
 	/**
@@ -218,7 +212,7 @@ public class MusicOrganizerController {
 	public void favouriteClip() {
 		try {
 			Integer[] options = {1, 2, 3, 4, 5};
-	        int score = (Integer)JOptionPane.showInputDialog(null, "Give scor to clip:",
+	        int score = (Integer)JOptionPane.showInputDialog(null, "Give score to clip:",
 	                "Numbers", JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 	        Iterator<SoundClip> i = view.getSelectedSoundClips().iterator();
 			while(i.hasNext()) {
