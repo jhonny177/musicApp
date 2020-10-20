@@ -1,9 +1,14 @@
 package view;
 
 import java.awt.Dimension;
+
+
+
 import java.awt.event.MouseEvent;
 import java.util.Enumeration;
 import java.util.Set;
+
+
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -18,6 +23,7 @@ import javax.swing.tree.TreePath;
 
 import controller.MusicOrganizerController;
 import model.RegularAlbum;
+
 import model.Album;
 import model.SoundClip;
 
