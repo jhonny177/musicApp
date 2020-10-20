@@ -25,6 +25,8 @@ import javax.swing.tree.DefaultTreeSelectionModel;
 import javax.swing.tree.TreePath;
 
 import controller.MusicOrganizerController;
+import model.RegularAlbum;
+import model.SearchBasedAlbum;
 import model.Album;
 import model.MusicOrganizerButtonPanel;
 import model.SoundClip;
@@ -75,6 +77,10 @@ public class MusicOrganizerWindow extends JFrame {
 				
 		this.setVisible(true);
 		
+		// Adds the flag album and great score album to the tree
+		onAlbumAdded(controller.getFlagAlbum());
+		onAlbumAdded(controller.getGreatAlbum());
+		
 	}
 
 	/**
@@ -84,9 +90,12 @@ public class MusicOrganizerWindow extends JFrame {
 		
 
 		DefaultMutableTreeNode tree_root = new DefaultMutableTreeNode();
-		tree_root.setUserObject((Album) controller.getRootAlbum());
+		tree_root.setUserObject((RegularAlbum) controller.getRootAlbum());
+//		tree_root.setUserObject((SearchBasedAlbum) controller.getFlagAlbum());
+//		tree_root.setUserObject((SearchBasedAlbum) controller.getGreatAlbum());
 		
 		final JTree tree = new JTree(tree_root);
+//		((DefaultTreeModel) albumTree.getModel()).insertNodeInto(trnode, 1);
 		tree.setMinimumSize(new Dimension(200, 400));
 		
 		tree.setToggleClickCount(3); // so that we can use double-clicks for
@@ -232,7 +241,7 @@ public class MusicOrganizerWindow extends JFrame {
 	/**
 	 * Updates the album hierarchy by removing an album from it
 	 */
-	public void onAlbumRemoved(Album album){
+	public void onAlbumRemoved(RegularAlbum album){
 		assert album != null;
 		
 		DefaultTreeModel model = (DefaultTreeModel) albumTree.getModel();
