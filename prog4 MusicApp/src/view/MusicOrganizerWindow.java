@@ -28,7 +28,6 @@ import controller.MusicOrganizerController;
 import model.RegularAlbum;
 import model.SearchBasedAlbum;
 import model.Album;
-import model.MusicOrganizerButtonPanel;
 import model.SoundClip;
 
 

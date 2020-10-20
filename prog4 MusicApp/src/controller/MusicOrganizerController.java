@@ -12,9 +12,9 @@ import model.RegularAlbum;
 import model.SearchBasedAlbum;
 
 import model.AlbumCaretaker;
-import model.MusicOrganizerButtonPanel;
 import model.SoundClip;
 import model.SoundClipLoader;
+import view.MusicOrganizerButtonPanel;
 import view.MusicOrganizerWindow;
 
 public class MusicOrganizerController {
@@ -207,9 +207,6 @@ public class MusicOrganizerController {
 				flagAlbum.addSong(s);
 
 			}
-
-			
-
 			else if(s.getFlagged()==true) {
 				s.setFlagged(false);
 				flagAlbum.removeSong(s);
