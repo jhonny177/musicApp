@@ -169,7 +169,17 @@ public class MusicOrganizerController {
 
 	}
 	public void flagClip() {
-		
+		Iterator<SoundClip> i = view.getSelectedSoundClips().iterator();
+		while(i.hasNext()) {
+			SoundClip s = i.next();
+			if(s.getFlagged()==false) {
+				s.setFlagged(true);
+			}
+			else if(s.getFlagged()==true) {
+				s.setFlagged(false);
+			}
+		}
+		view.onClipsUpdated();
 	}
 	public void favouriteClip() {
 		
